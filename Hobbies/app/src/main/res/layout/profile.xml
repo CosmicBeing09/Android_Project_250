@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<FrameLayout
+    android:id="@+id/profile_fragmant"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="100dp"
+                android:id="@+id/profile_image"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_marginBottom="10dp"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:id="@+id/nameText"
+                android:layout_below="@+id/profile_image"
+                android:text="Name: "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="65dp"
+                android:id="@+id/profile_name"
+                android:layout_below="@+id/profile_image"
+                android:text="XXXXXXXXXXXX "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:id="@+id/boyoshText"
+                android:layout_below="@+id/nameText"
+                android:text="Address: "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="90dp"
+                android:id="@+id/profile_address"
+                android:layout_below="@+id/nameText"
+                android:text="XXXXXXXXXXXX "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="190dp"
+                android:layout_height="25dp"
+                android:id="@+id/jomiText"
+                android:layout_below="@+id/boyoshText"
+                android:text="Phone No: "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="190dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="100dp"
+                android:id="@+id/profile_phoneNo"
+                android:layout_below="@+id/boyoshText"
+                android:text="XXXXXX"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:id="@+id/elakaText"
+                android:layout_below="@+id/jomiText"
+                android:text="User Name: "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="190dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="105dp"
+                android:id="@+id/profile_userName"
+                android:layout_below="@+id/jomiText"
+                android:text="XXXXXX"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:id="@+id/cropText"
+                android:layout_below="@+id/elakaText"
+                android:text="Hobby: "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="190dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="80dp"
+                android:id="@+id/profile_hobby"
+                android:layout_below="@+id/elakaText"
+                android:text="XXXXXX"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="170dp"
+                android:layout_height="25dp"
+                android:id="@+id/produceText"
+                android:layout_below="@+id/cropText"
+                android:text="Occupation: "
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="190dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="110dp"
+                android:id="@+id/profile_occupation"
+                android:layout_below="@+id/cropText"
+                android:text="XXXXXX"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                />
+            <Button
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="130dp"
+                android:text="Edit Profile"
+                android:textStyle="bold"
+                android:id="@+id/ProfileEditButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/produceText"
+                />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>
+
+</RelativeLayout>
