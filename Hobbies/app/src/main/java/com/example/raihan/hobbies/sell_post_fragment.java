@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -220,7 +222,7 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
     }
     }
 
-    class sell_post_object{
+    class sell_post_object implements Parcelable{
         private String imgaeUrl,post_text,user,user_imageUri,location,price,post_type,pet_type;
         public sell_post_object(String imageUrl,String post_text,String user,String user_imageUri,String location,String price,String post_type,String pet_type)
         {
@@ -299,5 +301,15 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
 
         public void setPost_type(String post_type) {
             this.post_type = post_type;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel parcel, int i) {
+
         }
     }

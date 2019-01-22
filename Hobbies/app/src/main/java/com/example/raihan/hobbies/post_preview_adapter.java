@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 public class post_preview_adapter extends RecyclerView.Adapter<post_preview_adapter.MyViewHolder>  {
 
+    private ItemClickListener clickListener;
     private ArrayList<sell_post_object> obj;
     private Context context;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView petType,postType;
         ImageView user_image;
 
@@ -30,12 +31,17 @@ public class post_preview_adapter extends RecyclerView.Adapter<post_preview_adap
             this.petType = itemView.findViewById(R.id.post_preview_petType);
             this.postType = itemView.findViewById(R.id.post_preview_postType);
             this.user_image = itemView.findViewById(R.id.post_preview_image);
+            itemView.setOnClickListener(this);
 
             // itemView.setTag(itemView);
 
 
         }
 
+        @Override
+        public void onClick(View view) {
+            if (clickListener != null) clickListener.onClick(view, getAdapterPosition());
+        }
     }
 
     public post_preview_adapter(ArrayList<sell_post_object> obj, Context context)
@@ -71,5 +77,8 @@ public class post_preview_adapter extends RecyclerView.Adapter<post_preview_adap
     @Override
     public int getItemCount() {
         return obj.size();
+    }
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
     }
 }

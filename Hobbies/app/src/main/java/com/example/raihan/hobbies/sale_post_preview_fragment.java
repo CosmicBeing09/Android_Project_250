@@ -1,5 +1,6 @@
 package com.example.raihan.hobbies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 
 import static com.example.raihan.hobbies.locate_user.fragment_petType;
 
-public class sale_post_preview_fragment extends Fragment {
+public class sale_post_preview_fragment extends Fragment implements ItemClickListener {
 
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
@@ -74,5 +76,15 @@ public class sale_post_preview_fragment extends Fragment {
         });
 
         recyclerView.setAdapter(ppa);
+        ppa.setClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+   final sell_post_object spo = arrayList.get(position);
+    Toast.makeText(getActivity(),"Clicked",Toast.LENGTH_LONG).show();
+       Intent i = new Intent(getActivity(),show_details_sale_post.class);
+       i.putExtra("object",spo);
+      startActivity(i);
     }
 }

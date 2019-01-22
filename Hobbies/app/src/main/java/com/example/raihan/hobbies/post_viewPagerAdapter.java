@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class post_viewPagerAdapter extends FragmentPagerAdapter {
+
     public post_viewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
