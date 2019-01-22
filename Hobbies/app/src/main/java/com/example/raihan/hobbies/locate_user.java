@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -29,16 +33,20 @@ import java.util.List;
 
 public class locate_user extends FragmentActivity implements OnMapReadyCallback {
 
-    public String user_location,search_location;
+    public String user_location,search_location,radius;
+    public Toolbar toolbar;
     private GoogleMap mMap;
     ArrayList<global_profile_info> user_arrayList = new ArrayList<>();
     DatabaseReference mDatabase;
     Button map_button;
+    List<Address> distances = new ArrayList<>();
+    Address hostAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate_user);
+
 
         map_button = (Button)findViewById(R.id.map_button);
 
@@ -46,6 +54,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
         Intent intent = getIntent();
         user_location = intent.getStringExtra("user_location").toString().trim();
+        radius = intent.getStringExtra("radius").toString().trim();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -71,12 +80,26 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
                             LatLng latLng = new LatLng(userAddress.getLatitude(),userAddress.getLongitude());
 
-                            markerOptions.position(latLng);
-                            markerOptions.title(search_location);
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                            distances.add(addressList.get(0));
+                            float results[] = new float[100];
+                            Location.distanceBetween(userAddress.getLatitude(),userAddress.getLongitude(),hostAddress.getLatitude(),hostAddress.getLongitude(),results);
+
+                            if(results[0]/1000 <= Float.valueOf(radius)) {
+
+                                mapInfo map_info = new mapInfo(locate_user.this);
+                                mMap.setInfoWindowAdapter(map_info);
+
+                                markerOptions.position(latLng);
+                                markerOptions.title(search_location);
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+                                Marker m = mMap.addMarker(markerOptions);
+                                m.setTag(gpi);
+                                m.showInfoWindow();
 
 
-                            mMap.addMarker(markerOptions);
+                                mMap.addMarker(markerOptions);
+                            }
 
                         }
 
@@ -136,9 +159,9 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
             {
                 for (int i=0;i<addressList.size();i++)
                 {
-                    Address userAddress = addressList.get(i);
+                    hostAddress = addressList.get(i);
 
-                    LatLng latLng = new LatLng(userAddress.getLatitude(),userAddress.getLongitude());
+                    LatLng latLng = new LatLng(hostAddress.getLatitude(),hostAddress.getLongitude());
 
                     markerOptions.position(latLng);
                     markerOptions.title(user_location);
@@ -146,7 +169,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
 
                     circleOptions.center(latLng);
-                    circleOptions.radius(10000);
+                    circleOptions.radius(Float.valueOf(radius)*1000);
                     circleOptions.strokeColor(Color.CYAN);
                     circleOptions.fillColor(0x4D000080);
 
@@ -156,6 +179,8 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
 
                 }
+
+              addressList.add(addressList.get(0));
 
             }
 

@@ -4,9 +4,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -36,10 +39,14 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,normal_post_fragmant.OnFragmentInteractionListener,sell_post_fragment.OnFragmentInteractionListener{
 
     String node;
     android.support.v4.app.Fragment fragment1 = null;
+    android.support.v4.app.Fragment fragment = null;
+    android.support.v4.app.Fragment fragment2 = null;
+
+
     private CircleImageView imageView;
     private normal_post_view_adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -47,13 +54,13 @@ public class MainActivity extends AppCompatActivity
     private DatabaseReference databaseReference,profileInfo;
     private RelativeLayout content_main;
     private TextView name,location;
+    TabLayout tabLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         profileInfo = FirebaseDatabase.getInstance().getReference("Users_info");
 
@@ -117,14 +124,30 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-//            }
-//        });
+
+                fragment = new normal_post_fragmant();
+                Bundle bundle = new Bundle();
+                bundle.putString("user",node);
+                fragment.setArguments(bundle);
+
+                if(fragment!=null)
+                {
+                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
+                    ft.commit();
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+
+                }
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -168,7 +191,7 @@ public class MainActivity extends AppCompatActivity
 
                     android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                    ft.replace(R.id.screenArea,fragment1);
+                    ft.replace(R.id.screenArea,fragment1).addToBackStack("Tag");
                     Bundle bundle = new Bundle();
                     bundle.putString("user",node);
                     fragment1.setArguments(bundle);
@@ -235,14 +258,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
 
-        android.support.v4.app.Fragment fragment = null;
-        android.support.v4.app.Fragment fragment2 = null;
+
 
         int id = item.getItemId();
 
        if (id == R.id.nav_gallery) {
 
-           fragment = new normal_post_fragmant();
+           fragment = new sell_post_fragment();
            Bundle bundle = new Bundle();
            bundle.putString("user",node);
            fragment.setArguments(bundle);
@@ -275,7 +297,7 @@ public class MainActivity extends AppCompatActivity
         {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.screenArea,fragment);
+            ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
             ft.commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
@@ -285,12 +307,17 @@ public class MainActivity extends AppCompatActivity
         {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.screenArea,fragment2);
+            ft.replace(R.id.screenArea,fragment2).addToBackStack("tag");
             ft.commit();
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         }
 
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

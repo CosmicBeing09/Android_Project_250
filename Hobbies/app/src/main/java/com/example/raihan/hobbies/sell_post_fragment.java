@@ -9,9 +9,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,11 +31,11 @@ import com.google.firebase.storage.UploadTask;
 
 import static android.app.Activity.RESULT_OK;
 
-public class normal_post_fragmant extends android.support.v4.app.Fragment {
+public class sell_post_fragment extends android.support.v4.app.Fragment {
 
-    private EditText postET;
-    private String post;
-    private ImageButton profileImage;
+    private EditText postET,price,location;
+    private String S_post,S_price,S_location,S_type,S_pet_type;
+    private ImageButton sale_Image;
     private Button postSubmit;
     private static final int Gallery_Reques = 1;
     private Uri SelectImgaeUri = null;
@@ -39,21 +43,24 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
     private DatabaseReference profileDatabase;
     private DatabaseReference userImageInfo;
     private DatabaseReference globalpost;
+    private RadioGroup radioGroup;
+    private Spinner spinner;
     String userImage;
+    String[] pet_type;
     String node;
+    Integer temp = 0;
 
     private BlankFragment.OnFragmentInteractionListener mListener;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.normal_post,container,false);
+        return inflater.inflate(R.layout.sell_post,container,false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         Bundle bundle = this.getArguments();
         if(bundle!=null)
@@ -61,16 +68,45 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
             node = bundle.getString("user").trim();
         }
 
-        profileImage = (ImageButton) view.findViewById(R.id.ProfileImage);
+        pet_type = getResources().getStringArray(R.array.pet_type);
+
+        spinner = (Spinner) view.findViewById(R.id.pet_type);
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(),R.layout.spinner_sample,R.id.sampleText,pet_type);
+
+        spinner.setAdapter(arrayAdapter);
+
+        sale_Image = (ImageButton) view.findViewById(R.id.Sale_Image);
 
         profileDatabase = FirebaseDatabase.getInstance().getReference();
         userImageInfo = FirebaseDatabase.getInstance().getReference("Users_info");
-        globalpost = FirebaseDatabase.getInstance().getReference("global_post");
+        globalpost = FirebaseDatabase.getInstance().getReference("global_sale_post");
 
 
 
 
-        postET = (EditText) view.findViewById(R.id.postEditText);
+        postET = (EditText) view.findViewById(R.id.Sellpos_tEditText);
+        price = (EditText) view.findViewById(R.id.price);
+        location = (EditText) view.findViewById(R.id.pickUp_location);
+
+        radioGroup = (RadioGroup)view.findViewById(R.id.radio_group);
+
+       radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(RadioGroup radioGroup, int i) {
+               if(radioGroup.getCheckedRadioButtonId() == R.id.adpotationRadio)
+               {
+                   temp = 0;
+                   price.setVisibility(View.INVISIBLE);
+               }
+               else if(radioGroup.getCheckedRadioButtonId() == R.id.sellRadio)
+               {
+                   temp = 1;
+                   price.setVisibility(View.VISIBLE);
+               }
+           }
+       });
+
 
 
 
@@ -93,7 +129,7 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
             }
         });
 
-        profileImage.setOnClickListener(new View.OnClickListener() {
+        sale_Image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -107,10 +143,8 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
                 startPosting();
             }
         });
-
-
-
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -141,19 +175,33 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+
     public void startPosting()
     {
         //  mProgress.setMessage("Posting ....");
         // mProgress.show();
 
 
-        post = postET.getText().toString().trim();
+        S_post = postET.getText().toString().trim();
+
+        if(temp == 1)
+        {
+            S_price = price.getText().toString().trim();
+            S_type = "Sale";
+        }
+        else if(temp == 0)
+        {
+            S_price = "Free";
+            S_type = "Adoptation";
+        }
+        S_location = location.getText().toString().trim();
+        S_pet_type = spinner.getSelectedItem().toString().trim();
 
 
         if(SelectImgaeUri != null)
         {
 
-            StorageReference filePath = dataStorage.child("Post Image").child(SelectImgaeUri.getLastPathSegment());
+            StorageReference filePath = dataStorage.child("Sale Post Image").child(SelectImgaeUri.getLastPathSegment());
             final ProgressDialog Dialog = new ProgressDialog(getActivity());
 
             filePath.putFile(SelectImgaeUri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -173,9 +221,9 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
                     Toast.makeText(getActivity(),downloadUri.toString(),Toast.LENGTH_LONG).show();
 
 
-                    normal_post_object  npobj = new normal_post_object(downloadUri.toString(),post,node,userImage);
-                    profileDatabase.child("post").child(node).push().setValue(npobj);
-                    globalpost.push().setValue(npobj);
+                    sell_post_object  spobj = new sell_post_object(downloadUri.toString(),S_post,node,userImage,S_location,S_price,S_type,S_pet_type);
+                    profileDatabase.child("Sale_post").child(node).push().setValue(spobj);
+                    globalpost.child(S_pet_type).push().setValue(spobj);
 
                     Dialog.dismiss();
 
@@ -191,57 +239,89 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
         if(requestCode == Gallery_Reques && resultCode == RESULT_OK)
         {
             SelectImgaeUri = data.getData();
-            profileImage.setImageURI(SelectImgaeUri);
+            sale_Image.setImageURI(SelectImgaeUri);
         }
     }
-
-}
-
-class normal_post_object{
-
-
-    private String imgaeUrl,post_text,user,user_imageUri;
-    public normal_post_object(String imageUrl,String post_text,String user,String user_imageUri)
-    {
-        this.imgaeUrl = imageUrl;
-        this.post_text = post_text;
-        this.user = user;
-        this.user_imageUri = user_imageUri;
-
     }
 
-    public normal_post_object(){}
+    class sell_post_object{
+        private String imgaeUrl,post_text,user,user_imageUri,location,price,post_type,pet_type;
+        public sell_post_object(String imageUrl,String post_text,String user,String user_imageUri,String location,String price,String post_type,String pet_type)
+        {
+            this.imgaeUrl = imageUrl;
+            this.post_text = post_text;
+            this.user = user;
+            this.user_imageUri = user_imageUri;
+            this.location = location;
+            this.price = price;
+            this.post_type = post_type;
+            this.pet_type = pet_type;
 
-    public String getUser() {
-        return user;
+        }
+
+        public String getPet_type() {
+            return pet_type;
+        }
+
+        public void setPet_type(String pet_type) {
+            this.pet_type = pet_type;
+        }
+
+        public sell_post_object(){}
+
+        public String getImgaeUrl() {
+            return imgaeUrl;
+        }
+
+        public void setImgaeUrl(String imgaeUrl) {
+            this.imgaeUrl = imgaeUrl;
+        }
+
+        public String getPost_text() {
+            return post_text;
+        }
+
+        public void setPost_text(String post_text) {
+            this.post_text = post_text;
+        }
+
+        public String getUser() {
+            return user;
+        }
+
+        public void setUser(String user) {
+            this.user = user;
+        }
+
+        public String getUser_imageUri() {
+            return user_imageUri;
+        }
+
+        public void setUser_imageUri(String user_imageUri) {
+            this.user_imageUri = user_imageUri;
+        }
+
+        public String getLocation() {
+            return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
+        }
+
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
+
+        public String getPost_type() {
+            return post_type;
+        }
+
+        public void setPost_type(String post_type) {
+            this.post_type = post_type;
+        }
     }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getUser_imageUri() {
-        return user_imageUri;
-    }
-
-    public void setUser_imageUri(String user_imageUri) {
-        this.user_imageUri = user_imageUri;
-    }
-
-    public String getImgaeUrl() {
-        return imgaeUrl;
-    }
-
-    public void setImgaeUrl(String imgaeUrl) {
-        this.imgaeUrl = imgaeUrl;
-    }
-
-    public String getPost_text() {
-        return post_text;
-    }
-
-    public void setPost_text(String post_text) {
-        this.post_text = post_text;
-    }
-}
-
