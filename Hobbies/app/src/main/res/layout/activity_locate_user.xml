@@ -22,48 +22,23 @@
         android:src="@drawable/search_button"
         android:contentDescription="TODO" />
 
-    <!--<ToggleButton-->
-        <!--android:id="@+id/preview_toggle"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="280dp"-->
-        <!--android:textOff="Map"-->
-        <!--android:textOn="Post"-->
-        <!--/>-->
-
-    <Button
+    <ToggleButton
         android:id="@+id/preview_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="280dp"
-        android:text="Button"
+        android:textOff="Map"
+        android:textOn="Post"
         />
 
-    <FrameLayout
-        android:id="@+id/map_frame"
-        android:layout_marginTop="60dp"
-        android:layout_width="match_parent"
-        android:layout_height="440dp"
-        android:background="@android:color/white"
-        />
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            />
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:layout_marginTop="60dp"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="440dp"
-    />
-    <Button
-        android:id="@+id/map_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/map"
-        android:layout_marginTop="10dp"
-        android:text="Send Notification"
-        android:textStyle="bold"
-        android:layout_marginLeft="100dp"
-        />
 </RelativeLayout>

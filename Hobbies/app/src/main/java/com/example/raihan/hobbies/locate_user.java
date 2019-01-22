@@ -55,20 +55,18 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
     private ImageButton imageButton;
     private EditText search;
     private ToggleButton toggleButton;
-    private Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate_user);
 
-
-        //toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
-        button = (Button)findViewById(R.id.preview_toggle);
+        toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
         search = (EditText) findViewById(R.id.search_pet);
         imageButton = (ImageButton) findViewById(R.id.search_imageButton);
 
-        map_button = (Button) findViewById(R.id.map_button);
+//        map_button = (Button) findViewById(R.id.map_button);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("global_sale_post");
 
@@ -166,28 +164,15 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
             }
         });
 
-//toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//    @Override
-//    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//       if(b==false)
-//       {
-//           postPreviewFragment = new post_preview_fragment();
-//           if(postPreviewFragment!=null)
-//           {
-//               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-//               ft.replace(R.id.map_frame,postPreviewFragment).addToBackStack("tag");
-//               ft.commit();
-//           }
-//
-//       }
-//    }
-//});
-
-button.setOnClickListener(new View.OnClickListener() {
+toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
-    public void onClick(View view) {
-        postPreviewFragment = new post_preview_fragment();
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+
+       if(b==true)
+       {
+           postPreviewFragment = new sale_post_preview_fragment();
            if(postPreviewFragment!=null)
            {
                android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -195,8 +180,20 @@ button.setOnClickListener(new View.OnClickListener() {
                ft.replace(R.id.map,postPreviewFragment).addToBackStack("tag");
                ft.commit();
            }
+
+       }
+       else {
+           android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+           android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+           ft.remove(postPreviewFragment).addToBackStack("tag").commit();
+
+
+
+
+       }
     }
 });
+
 
     }
 
