@@ -1,5 +1,6 @@
 package com.example.raihan.hobbies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,7 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +29,9 @@ public class user_profile extends Fragment {
     String node;
     DatabaseReference pDatabase;
     CircleImageView circleImageView;
+    FrameLayout frameLayout;
+    profile_info pn;
+    RelativeLayout relativeLayout;
 
 
     @Nullable
@@ -35,6 +43,9 @@ public class user_profile extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        frameLayout = (FrameLayout) view.findViewById(R.id.profile_fragmant);
+        relativeLayout = (RelativeLayout)view.findViewById(R.id.profile_fragmant_relative);
 
         Bundle bundle = this.getArguments();
         if(bundle!=null)
@@ -57,7 +68,7 @@ public class user_profile extends Fragment {
         pDatabase.child(node).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                profile_info pn = dataSnapshot.getValue(profile_info.class);
+                pn = dataSnapshot.getValue(profile_info.class);
                Picasso.get().load(pn.getRegister_ImageUri()).into(circleImageView);
                 name.setText(pn.getRegister_name());
                 address.setText(pn.getAddress());
@@ -75,6 +86,16 @@ public class user_profile extends Fragment {
         });
 
 
+        relativeLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(),profile_edit.class);
+                intent.putExtra("profile",pn);
+                Toast.makeText(getActivity(), "Long click!", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                return true;
+            }
+        });
 
     }
 }

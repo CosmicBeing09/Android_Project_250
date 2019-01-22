@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
-                fragment = new normal_post_fragmant();
+                fragment = new rescue_call_fragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("user",node);
                 fragment.setArguments(bundle);
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-            fragment2 = new rescue_call_fragment();
+            //fragment2 = new rescue_call_fragment();
 
 
         } else if (id == R.id.nav_manage) {
@@ -307,15 +307,15 @@ public class MainActivity extends AppCompatActivity
 //            drawer.closeDrawer(GravityCompat.START);
 //
 //        }
-        if(fragment2!=null)
-        {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.screenArea,fragment2).addToBackStack("tag");
-            ft.commit();
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-        }
+//        if(fragment2!=null)
+//        {
+//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+//            ft.replace(R.id.screenArea,fragment2).addToBackStack("tag");
+//            ft.commit();
+//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//            drawer.closeDrawer(GravityCompat.START);
+//        }
 
         return true;
     }

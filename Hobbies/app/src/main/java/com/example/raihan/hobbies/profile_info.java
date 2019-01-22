@@ -1,6 +1,9 @@
 package com.example.raihan.hobbies;
 
-public class profile_info {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class profile_info implements Parcelable {
 
 String register_ImageUri,register_name,address,phone_no,user_name,hobby,occupation;
 public profile_info(String register_ImageUri,String register_name,String address,String phone_no,
@@ -15,6 +18,28 @@ public profile_info(String register_ImageUri,String register_name,String address
     this.user_name = user_name;
 }
 public profile_info(){}
+
+    protected profile_info(Parcel in) {
+        register_ImageUri = in.readString();
+        register_name = in.readString();
+        address = in.readString();
+        phone_no = in.readString();
+        user_name = in.readString();
+        hobby = in.readString();
+        occupation = in.readString();
+    }
+
+    public static final Creator<profile_info> CREATOR = new Creator<profile_info>() {
+        @Override
+        public profile_info createFromParcel(Parcel in) {
+            return new profile_info(in);
+        }
+
+        @Override
+        public profile_info[] newArray(int size) {
+            return new profile_info[size];
+        }
+    };
 
     public String getRegister_ImageUri() {
         return register_ImageUri;
@@ -70,5 +95,21 @@ public profile_info(){}
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(register_ImageUri);
+        parcel.writeString(register_name);
+        parcel.writeString(address);
+        parcel.writeString(phone_no);
+        parcel.writeString(user_name);
+        parcel.writeString(hobby);
+        parcel.writeString(occupation);
     }
 }

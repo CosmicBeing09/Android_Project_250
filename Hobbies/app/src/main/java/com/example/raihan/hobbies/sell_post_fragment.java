@@ -237,6 +237,29 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
 
         }
 
+        protected sell_post_object(Parcel in) {
+            imgaeUrl = in.readString();
+            post_text = in.readString();
+            user = in.readString();
+            user_imageUri = in.readString();
+            location = in.readString();
+            price = in.readString();
+            post_type = in.readString();
+            pet_type = in.readString();
+        }
+
+        public static final Creator<sell_post_object> CREATOR = new Creator<sell_post_object>() {
+            @Override
+            public sell_post_object createFromParcel(Parcel in) {
+                return new sell_post_object(in);
+            }
+
+            @Override
+            public sell_post_object[] newArray(int size) {
+                return new sell_post_object[size];
+            }
+        };
+
         public String getPet_type() {
             return pet_type;
         }
@@ -310,6 +333,13 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
 
         @Override
         public void writeToParcel(Parcel parcel, int i) {
-
+            parcel.writeString(imgaeUrl);
+            parcel.writeString(post_text);
+            parcel.writeString(user);
+            parcel.writeString(user_imageUri);
+            parcel.writeString(location);
+            parcel.writeString(price);
+            parcel.writeString(post_type);
+            parcel.writeString(pet_type);
         }
     }

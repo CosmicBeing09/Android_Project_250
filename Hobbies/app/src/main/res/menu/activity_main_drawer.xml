@@ -8,11 +8,11 @@
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_add_box"
-            android:title="Add Sale Post" />
+            android:title="Add Post" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/rescue"
-            android:title="Rescue Call" />
+            android:title="Not added" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

@@ -23,7 +23,7 @@ public class show_details_sale_post extends AppCompatActivity {
         setContentView(R.layout.activity_show_details_sale_post);
 
         Intent intent = getIntent();
-        spo =(sell_post_object) intent.getSerializableExtra("object");
+        spo =(sell_post_object) intent.getParcelableExtra("object");
 
         userNmae = (TextView) findViewById(R.id.Details_userName);
         location = (TextView) findViewById(R.id.Details_location);
