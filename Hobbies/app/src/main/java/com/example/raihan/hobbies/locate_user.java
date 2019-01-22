@@ -5,12 +5,19 @@ import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 import android.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,96 +48,155 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
     Button map_button;
     List<Address> distances = new ArrayList<>();
     Address hostAddress;
+    public static String fragment_petType = null;
+    Fragment postPreviewFragment;
+
+
+    private ImageButton imageButton;
+    private EditText search;
+    private ToggleButton toggleButton;
+    private Button button;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate_user);
 
 
-        map_button = (Button)findViewById(R.id.map_button);
+        //toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
+        button = (Button)findViewById(R.id.preview_toggle);
+        search = (EditText) findViewById(R.id.search_pet);
+        imageButton = (ImageButton) findViewById(R.id.search_imageButton);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        map_button = (Button) findViewById(R.id.map_button);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("global_sale_post");
 
         Intent intent = getIntent();
         user_location = intent.getStringExtra("user_location").toString().trim();
         radius = intent.getStringExtra("radius").toString().trim();
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mDatabase.child("Global_users").addChildEventListener(new ChildEventListener() {
+        final String[] searchType = new String[1];
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-              global_profile_info gpi = dataSnapshot.getValue(global_profile_info.class);
-                Geocoder geocoder = new Geocoder(locate_user.this);
-                List<Address> addressList = null;
-                MarkerOptions markerOptions = new MarkerOptions();
-                search_location = gpi.getLocation();
+            public void onClick(View view) {
 
-                try {
-                    addressList = geocoder.getFromLocationName(search_location,6);
-                    if(addressList!=null)
-                    {
-                        for (int i=0;i<addressList.size();i++)
-                        {
-                            Address userAddress = addressList.get(i);
+                searchType[0] = search.getText().toString().trim();
+                fragment_petType = searchType[0];
 
-                            LatLng latLng = new LatLng(userAddress.getLatitude(),userAddress.getLongitude());
+                mDatabase.child(searchType[0]).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        sell_post_object cpo = dataSnapshot.getValue(sell_post_object.class);
+                        Geocoder geocoder = new Geocoder(locate_user.this);
+                        List<Address> addressList = null;
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        assert cpo != null;
+                        search_location = cpo.getLocation();
 
-                            distances.add(addressList.get(0));
-                            float results[] = new float[100];
-                            Location.distanceBetween(userAddress.getLatitude(),userAddress.getLongitude(),hostAddress.getLatitude(),hostAddress.getLongitude(),results);
+                        Toast.makeText(locate_user.this, searchType[0].toString().trim(), Toast.LENGTH_SHORT).show();
 
-                            if(results[0]/1000 <= Float.valueOf(radius)) {
+                        try {
+                            addressList = geocoder.getFromLocationName(search_location, 6);
+                            if (addressList != null) {
+                                for (int i = 0; i < addressList.size(); i++) {
+                                    Address userAddress = addressList.get(i);
 
-                                mapInfo map_info = new mapInfo(locate_user.this);
-                                mMap.setInfoWindowAdapter(map_info);
+                                    LatLng latLng = new LatLng(userAddress.getLatitude(), userAddress.getLongitude());
 
-                                markerOptions.position(latLng);
-                                markerOptions.title(search_location);
-                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                    distances.add(addressList.get(0));
+                                    float results[] = new float[100];
+                                    Location.distanceBetween(userAddress.getLatitude(), userAddress.getLongitude(), hostAddress.getLatitude(), hostAddress.getLongitude(), results);
 
-                                Marker m = mMap.addMarker(markerOptions);
-                                m.setTag(gpi);
-                                m.showInfoWindow();
+                                    if (results[0] / 1000 <= Float.valueOf(radius)) {
+
+                                        mapInfo map_info = new mapInfo(locate_user.this);
+                                        mMap.setInfoWindowAdapter(map_info);
+
+                                        markerOptions.position(latLng);
+                                        markerOptions.title(search_location);
+                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+                                        Marker m = mMap.addMarker(markerOptions);
+                                        m.setTag(cpo);
+                                        m.showInfoWindow();
 
 
-                                mMap.addMarker(markerOptions);
+                                        mMap.addMarker(markerOptions);
+                                    }
+
+                                }
+
                             }
 
+                        } catch (Exception e) {
                         }
+
 
                     }
 
-                }catch (Exception e){}
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+                    }
 
-            }
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    }
 
-            }
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    }
 
-            }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
 
             }
         });
 
+//toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//    @Override
+//    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//       if(b==false)
+//       {
+//           postPreviewFragment = new post_preview_fragment();
+//           if(postPreviewFragment!=null)
+//           {
+//               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+//               ft.replace(R.id.map_frame,postPreviewFragment).addToBackStack("tag");
+//               ft.commit();
+//           }
+//
+//       }
+//    }
+//});
+
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        postPreviewFragment = new post_preview_fragment();
+           if(postPreviewFragment!=null)
+           {
+               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+               ft.replace(R.id.map,postPreviewFragment).addToBackStack("tag");
+               ft.commit();
+           }
+    }
+});
 
     }
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/post_preview_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="13dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dog"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                android:layout_marginLeft="120dp"
+                android:id="@+id/post_preview_petType"
+                android:textColor="@color/colorPrimary"
+                />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/post_preview_type"
+                android:layout_below="@+id/post_preview_petType"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="120dp"
+                android:textSize="20dp"
+                android:text="Type: "
+                android:textStyle="italic"
+                android:textColor="@color/colorPrimaryDark"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/post_preview_postType"
+                android:layout_below="@+id/post_preview_petType"
+
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="10dp"
+                android:text="Adoptation"
+                android:textSize="20dp"
+                android:textStyle="italic"
+                android:textColor="@color/colorAccent"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

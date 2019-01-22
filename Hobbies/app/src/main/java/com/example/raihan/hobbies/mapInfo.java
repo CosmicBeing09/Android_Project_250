@@ -39,11 +39,11 @@ public class mapInfo implements GoogleMap.InfoWindowAdapter{
             TextView phone_no = view.findViewById(R.id.mapInfoText2);
             ImageView imageView = view.findViewById(R.id.mapInfoImage);
 
-            global_profile_info gpi = (global_profile_info) marker.getTag();
+            sell_post_object spo = (sell_post_object) marker.getTag();
 
-            Picasso.get().load(gpi.getGlobal_imageUri()).into(imageView);
-            name.setText(gpi.getName());
-            phone_no.setText(gpi.getPhone_no());
+            Picasso.get().load(spo.getUser_imageUri()).into(imageView);
+            name.setText(spo.getUser());
+            phone_no.setText(spo.getPet_type());
 
             return view;
         }catch (Exception e){}
