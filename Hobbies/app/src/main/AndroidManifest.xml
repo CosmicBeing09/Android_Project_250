@@ -44,9 +44,9 @@
 
         <activity
             android:name=".locate_user"
-            android:label="@string/title_activity_locate_user"
-             />
-
+            android:label="@string/title_activity_locate_user" />
+        <activity android:name=".add_post_master"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>

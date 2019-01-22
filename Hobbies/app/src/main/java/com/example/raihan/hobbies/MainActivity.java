@@ -39,9 +39,9 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,normal_post_fragmant.OnFragmentInteractionListener,sell_post_fragment.OnFragmentInteractionListener{
+        implements NavigationView.OnNavigationItemSelectedListener{
 
-    String node;
+    public static String node;
     android.support.v4.app.Fragment fragment1 = null;
     android.support.v4.app.Fragment fragment = null;
     android.support.v4.app.Fragment fragment2 = null;
@@ -264,10 +264,14 @@ public class MainActivity extends AppCompatActivity
 
        if (id == R.id.nav_gallery) {
 
-           fragment = new sell_post_fragment();
-           Bundle bundle = new Bundle();
-           bundle.putString("user",node);
-           fragment.setArguments(bundle);
+//           fragment = new sell_post_fragment();
+//           Bundle bundle = new Bundle();
+//           bundle.putString("user",node);
+//           fragment.setArguments(bundle);
+
+           Intent intent = new Intent(MainActivity.this,add_post_master.class);
+           startActivity(intent);
+//           intent.putExtra("user",node);
 
 
         } else if (id == R.id.nav_slideshow) {
@@ -293,16 +297,16 @@ public class MainActivity extends AppCompatActivity
 //            ft.commit();
 //        }
 
-        if(fragment!=null)
-        {
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
-            ft.commit();
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-
-        }
+//        if(fragment!=null)
+//        {
+//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+//            ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
+//            ft.commit();
+//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//            drawer.closeDrawer(GravityCompat.START);
+//
+//        }
         if(fragment2!=null)
         {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -316,8 +320,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
-    }
 }

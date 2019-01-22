@@ -30,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.raihan.hobbies.MainActivity.node;
 
 public class sell_post_fragment extends android.support.v4.app.Fragment {
 
@@ -47,10 +48,10 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
     private Spinner spinner;
     String userImage;
     String[] pet_type;
-    String node;
+//    String node;
     Integer temp = 0;
 
-    private BlankFragment.OnFragmentInteractionListener mListener;
+
 
     @Nullable
     @Override
@@ -62,11 +63,12 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = this.getArguments();
-        if(bundle!=null)
-        {
-            node = bundle.getString("user").trim();
-        }
+//        Bundle bundle = this.getArguments();
+//        if(bundle!=null)
+//        {
+//            node = bundle.getString("user").trim();
+//        }
+
 
         pet_type = getResources().getStringArray(R.array.pet_type);
 
@@ -146,34 +148,8 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof BlankFragment.OnFragmentInteractionListener) {
-            mListener = (BlankFragment.OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 
 
     public void startPosting()

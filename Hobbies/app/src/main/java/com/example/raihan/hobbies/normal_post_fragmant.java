@@ -26,6 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.raihan.hobbies.MainActivity.node;
 
 public class normal_post_fragmant extends android.support.v4.app.Fragment {
 
@@ -40,9 +41,9 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
     private DatabaseReference userImageInfo;
     private DatabaseReference globalpost;
     String userImage;
-    String node;
+    //String node;
 
-    private BlankFragment.OnFragmentInteractionListener mListener;
+
 
     @Nullable
     @Override
@@ -54,12 +55,14 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+//
+//        Bundle bundle = this.getArguments();
+//        if(bundle!=null)
+//        {
+//            node = bundle.getString("user").trim();
+//        }
 
-        Bundle bundle = this.getArguments();
-        if(bundle!=null)
-        {
-            node = bundle.getString("user").trim();
-        }
+
 
         profileImage = (ImageButton) view.findViewById(R.id.ProfileImage);
 
@@ -112,34 +115,9 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof BlankFragment.OnFragmentInteractionListener) {
-            mListener = (BlankFragment.OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 
     public void startPosting()
     {

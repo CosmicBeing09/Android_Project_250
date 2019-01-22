@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 
 
-public class rescue_call_fragment extends Fragment implements normal_post_fragmant.OnFragmentInteractionListener,sell_post_fragment.OnFragmentInteractionListener {
+public class rescue_call_fragment extends Fragment {
 
     EditText users_location,radius;
     Button see_user;
@@ -33,53 +33,26 @@ public class rescue_call_fragment extends Fragment implements normal_post_fragma
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tabLayout = (TabLayout)view.findViewById(R.id.post_tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Normal Post"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sell Post"));
 
-        final ViewPager viewPager = (ViewPager)view.findViewById(R.id.post_page_viewer);
-        final post_page_adapter ppa = new post_page_adapter(getFragmentManager(),tabLayout.getTabCount());
-        viewPager.setAdapter(ppa);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+        users_location = (EditText) view.findViewById(R.id.rescue_location);
+        see_user = (Button) view.findViewById(R.id.rescue_button);
+        radius = (EditText) view.findViewById(R.id.radius);
+
+        see_user.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onClick(View view) {
+               String location = users_location.getText().toString();
+               String Radius = radius.getText().toString();
+                Intent intent = new Intent(getActivity(),locate_user.class);
+                intent.putExtra("user_location",location);
+                intent.putExtra("radius",Radius);
+                startActivity(intent);
 
             }
         });
-//
-//        users_location = (EditText) view.findViewById(R.id.rescue_location);
-//        see_user = (Button) view.findViewById(R.id.rescue_button);
-//        radius = (EditText) view.findViewById(R.id.radius);
-//
-//        see_user.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//               String location = users_location.getText().toString();
-//               String Radius = radius.getText().toString();
-//                Intent intent = new Intent(getActivity(),locate_user.class);
-//                intent.putExtra("user_location",location);
-//                intent.putExtra("radius",Radius);
-//                startActivity(intent);
-//
-//            }
-//        });
 
 
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
 }
