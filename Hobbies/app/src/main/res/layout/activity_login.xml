@@ -21,7 +21,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/paws3"
+            android:src="@mipmap/paw4"
             android:contentDescription=""
             tools:ignore="ContentDescription" />
 
@@ -29,36 +29,47 @@
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
-            android:hint="User Name e.g: Hafeez123 "
+            android:hint="User Name "
             android:inputType="textEmailAddress"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
+            android:drawableLeft="@drawable/man"
+            android:padding="10dp"
+            android:drawablePadding="15dp"
+            android:background="@drawable/edit_round_button"/>
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textColorHint="@android:color/white" />-->
 
 
 
         <EditText
             android:id="@+id/password"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginBottom="10dp"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white" />
+            android:padding="10dp"
+            android:drawablePadding="15dp"
+            android:drawableLeft="@drawable/key"
+            android:background="@drawable/edit_round_button"/>
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textColorHint="@android:color/white" />-->
 
 
         <!-- Login Button -->
 
         <Button
             android:id="@+id/btn_login"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@color/colorAccent"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded_button"
             android:text="@string/btn_login"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            />
 
         <Button
             android:id="@+id/btn_reset_password"
