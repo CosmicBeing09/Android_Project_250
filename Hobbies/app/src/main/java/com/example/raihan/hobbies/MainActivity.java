@@ -131,21 +131,24 @@ public class MainActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
-                fragment = new rescue_call_fragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("user",node);
-                fragment.setArguments(bundle);
+//                fragment = new rescue_call_fragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("user",node);
+//                fragment.setArguments(bundle);
+//
+//                if(fragment!=null)
+//                {
+//                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+//                    ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
+//                    ft.commit();
+//                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//                    drawer.closeDrawer(GravityCompat.START);
+//
+//                }
 
-                if(fragment!=null)
-                {
-                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                    ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
-                    ft.commit();
-                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    drawer.closeDrawer(GravityCompat.START);
-
-                }
+                Intent intent = new Intent(MainActivity.this,locate_user.class);
+                startActivity(intent);
             }
         });
 
