@@ -49,7 +49,8 @@
             android:name=".add_post_master"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".show_details_sale_post" />
-        <activity android:name=".profile_edit"></activity>
+        <activity android:name=".profile_edit" />
+        <activity android:name=".manage_post"></activity>
     </application>
 
 </manifest>
