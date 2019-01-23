@@ -108,7 +108,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:background="@drawable/edit_round_button"
-            android:drawableLeft="@drawable/phone_register"
+            android:drawableLeft="@drawable/occupation"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
             <!--android:textColor="@android:color/white" />-->
