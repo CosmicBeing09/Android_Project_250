@@ -37,8 +37,8 @@
             android:padding="10dp"
             android:drawablePadding="15dp"
             android:background="@drawable/edit_round_button"/>
-            <!--android:textColor="@android:color/white"-->
-            <!--android:textColorHint="@android:color/white" />-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textColorHint="@android:color/white" />-->
 
 
 
@@ -53,8 +53,8 @@
             android:drawablePadding="15dp"
             android:drawableLeft="@drawable/key"
             android:background="@drawable/edit_round_button"/>
-            <!--android:textColor="@android:color/white"-->
-            <!--android:textColorHint="@android:color/white" />-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:textColorHint="@android:color/white" />-->
 
 
         <!-- Login Button -->
