@@ -21,7 +21,7 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/user"
             android:contentDescription=""
             tools:ignore="ContentDescription" />
 
@@ -31,58 +31,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name *"
+            android:textSize="20dp"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/name_register"
+            android:padding="5dp"
+            android:drawablePadding="15dp"
+            />
+            <!--android:textColor="@android:color/white" />-->
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/Address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Address (Location) *"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textSize="20dp"
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/address_register"
+            android:padding="5dp"
+            android:drawablePadding="15dp"/>
+            <!--android:textColor="@android:color/white" />-->
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/PhoneNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone No"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/phone_register"
+            android:padding="5dp"
+            android:drawablePadding="15dp"/>
+            <!--android:textColor="@android:color/white" />-->
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/register_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="User name e.g. Himu123"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/username_register"
+            android:padding="5dp"
+            android:drawablePadding="15dp"/>
+            <!--android:textColor="@android:color/white" />-->
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/hobby"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Hobby"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/hobby"
+            android:padding="5dp"
+            android:drawablePadding="15dp"/>
+            <!--android:textColor="@android:color/white" />-->
 
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/Occupation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Occupation"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/phone_register"
+            android:padding="5dp"
+            android:drawablePadding="15dp"/>
+            <!--android:textColor="@android:color/white" />-->
 
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +124,11 @@
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/edit_round_button"
+            android:drawableLeft="@drawable/key"
+            android:padding="5dp"
+            android:drawablePadding="15dp"/>
+            <!--android:textColor="@android:color/white" />-->
 
 
         <Button
@@ -100,7 +137,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/rounded_button"
             android:text="@string/action_sign_in_short"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
