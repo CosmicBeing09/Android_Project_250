@@ -25,7 +25,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -52,11 +51,10 @@ public class MainActivity extends AppCompatActivity
     private normal_post_view_adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private DatabaseReference databaseReference,profileInfo,profileDatabase;
+    private DatabaseReference databaseReference,profileInfo;
     private RelativeLayout content_main;
     private TextView name,location;
     TabLayout tabLayout;
-    public static String user_location;
 
 
     @Override
@@ -130,25 +128,24 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                profileDatabase = FirebaseDatabase.getInstance().getReference("Users_info");
-                profileDatabase.child(node).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        profile_info pi = dataSnapshot.getValue(profile_info.class);
-                        user_location = pi.getAddress().trim();
-                        Toast.makeText(MainActivity.this,user_location,Toast.LENGTH_LONG).show();
-                    }
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                fragment = new rescue_call_fragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("user",node);
+                fragment.setArguments(bundle);
 
-                    }
-                });
+                if(fragment!=null)
+                {
+                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
+                    ft.commit();
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
 
-
-                Intent intent = new Intent(MainActivity.this,locate_user.class);
-                startActivity(intent);
-                //intent.putExtra("location",user_location);
+                }
             }
         });
 
@@ -287,9 +284,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
-           Intent intent = new Intent(MainActivity.this,message_view.class);
-           startActivity(intent);
         }
 //        else if(id == R.id.imageView)
 //        {

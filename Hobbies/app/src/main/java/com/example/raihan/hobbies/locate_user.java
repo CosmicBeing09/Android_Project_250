@@ -1,14 +1,10 @@
 package com.example.raihan.hobbies;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -38,23 +34,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.raihan.hobbies.MainActivity.node;
-import static com.example.raihan.hobbies.MainActivity.user_location;
-
 public class locate_user extends FragmentActivity implements OnMapReadyCallback {
 
-    public String search_location,radius;
-    private EditText searchRadius;
-    public static final int REQUEST_LOCATION_PERMISSION = 1;
-    DatabaseReference profileDatabase;
+    public String user_location,search_location,radius;
     public Toolbar toolbar;
-    String location;
     private GoogleMap mMap;
     ArrayList<global_profile_info> user_arrayList = new ArrayList<>();
     DatabaseReference mDatabase;
@@ -68,8 +55,6 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
     private ImageButton imageButton;
     private EditText search;
     private ToggleButton toggleButton;
-    private LocationManager locationManager;
-    private LocationListener locationListener;
 
 
     @Override
@@ -77,24 +62,17 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate_user);
 
-//        Intent intent = getIntent();
-//        user_location = intent.getStringExtra("location");
-        Toast.makeText(locate_user.this,user_location,Toast.LENGTH_LONG).show();
-
         toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
         search = (EditText) findViewById(R.id.search_pet);
         imageButton = (ImageButton) findViewById(R.id.search_imageButton);
-        searchRadius = (EditText)findViewById(R.id.search_radius);
-
-
 
 //        map_button = (Button) findViewById(R.id.map_button);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("global_sale_post");
 
-
-//        Intent intent = getIntent();
-//        user_location = intent.getStringExtra("user_location").toString().trim();
-//        radius = intent.getStringExtra("radius").toString().trim();
+        Intent intent = getIntent();
+        user_location = intent.getStringExtra("user_location").toString().trim();
+        radius = intent.getStringExtra("radius").toString().trim();
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -108,52 +86,8 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
             @Override
             public void onClick(View view) {
 
-                radius = searchRadius.getText().toString().trim();
-                if(radius==null)
-                    radius = "20";
-
-                Geocoder geocoder = new Geocoder(locate_user.this);
-                List<Address> addressList = null;
-                MarkerOptions markerOptions = new MarkerOptions();
-                CircleOptions circleOptions = new CircleOptions();
-
-                try{
-                    addressList = geocoder.getFromLocationName(user_location,10);
-
-                    if(addressList!=null)
-                    {
-                        for (int i=0;i<addressList.size();i++)
-                        {
-                            hostAddress = addressList.get(i);
-
-                            LatLng latLng = new LatLng(hostAddress.getLatitude(),hostAddress.getLongitude());
-
-                            markerOptions.position(latLng);
-                            markerOptions.title(user_location);
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-
-
-                            circleOptions.center(latLng);
-                            circleOptions.radius(Float.valueOf(radius)*1000);
-                            circleOptions.strokeColor(Color.CYAN);
-                            circleOptions.fillColor(0x4D000080);
-
-                            mMap.addMarker(markerOptions);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
-                            mMap.addCircle(circleOptions);
-
-
-                        }
-
-                        addressList.add(addressList.get(0));
-
-                    }
-
-                }catch (Exception e){}
                 searchType[0] = search.getText().toString().trim();
                 fragment_petType = searchType[0];
-
-                mDatabase = FirebaseDatabase.getInstance().getReference("global_sale_post");
 
                 mDatabase.child(searchType[0]).addChildEventListener(new ChildEventListener() {
                     @Override
@@ -262,6 +196,8 @@ toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
 
 
     }
+
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -272,8 +208,46 @@ toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap) throws NullPointerException {
+    public void onMapReady(GoogleMap googleMap) {
 
+        Geocoder geocoder = new Geocoder(locate_user.this);
+        List<Address> addressList = null;
+        MarkerOptions markerOptions = new MarkerOptions();
+        CircleOptions circleOptions = new CircleOptions();
         mMap = googleMap;
+        try{
+            addressList = geocoder.getFromLocationName(user_location,10);
+
+            if(addressList!=null)
+            {
+                for (int i=0;i<addressList.size();i++)
+                {
+                    hostAddress = addressList.get(i);
+
+                    LatLng latLng = new LatLng(hostAddress.getLatitude(),hostAddress.getLongitude());
+
+                    markerOptions.position(latLng);
+                    markerOptions.title(user_location);
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+
+                    circleOptions.center(latLng);
+                    circleOptions.radius(Float.valueOf(radius)*1000);
+                    circleOptions.strokeColor(Color.CYAN);
+                    circleOptions.fillColor(0x4D000080);
+
+                    mMap.addMarker(markerOptions);
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                    mMap.addCircle(circleOptions);
+
+
+                }
+
+              addressList.add(addressList.get(0));
+
+            }
+
+        }catch (Exception e){}
+
     }
 }
