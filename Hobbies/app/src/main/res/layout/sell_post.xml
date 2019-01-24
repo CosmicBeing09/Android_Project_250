@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
@@ -8,8 +9,13 @@
         android:id="@+id/normal_post_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@color/white"
         >
+        <!--<View-->
+            <!--android:layout_width="380dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--/>-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -18,23 +24,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent">
+
+
+                </RelativeLayout>
                 <Spinner
                     android:id="@+id/pet_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
                     android:autofillHints="Pet Type"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="100dp"
                     >
 
                 </Spinner>
 
+                <TextView
+                    android:layout_marginLeft="30dp"
+                    android:textSize="25dp"
+                    android:id="@+id/sell_type_text_ID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type of Sell post"
+                    android:layout_below="@+id/pet_type"
+                    android:layout_marginTop="10dp"/>
                 <RadioGroup
                     android:id="@+id/radio_group"
-                    android:layout_below="@+id/pet_type"
+                    android:layout_below="@+id/sell_type_text_ID"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/sell_type_text_ID">
 
                 <RadioButton
                     android:id="@+id/adpotationRadio"
@@ -58,52 +81,65 @@
                 </RadioGroup>
 
                 <ImageButton
-
                     android:id="@+id/Sale_Image"
+                    android:layout_toRightOf="@+id/Sellpos_tEditText"
                     android:layout_below="@+id/radio_group"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="100dp"
-                    android:src="@mipmap/add_btn"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/key"
                     android:adjustViewBounds="true"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     />
                 <EditText
-                    android:layout_marginTop="10dp"
-                    android:layout_width="300dp"
-                    android:layout_height="150dp"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_width="250dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/Sellpos_tEditText"
-                    android:layout_below="@+id/Sale_Image"
+                    android:layout_below="@+id/radio_group"
                     android:hint="     Write Your Post..."
-                    android:background="@drawable/bound_background"
+                    android:drawablePadding="10dp"
+                    android:padding="10dp"
+                    android:drawableLeft="@drawable/key"
+                    android:background="@drawable/edit_text_post"
                     android:inputType="text"
                     />
 
 
                 <EditText
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/pencil"
+                    android:padding="10dp"
+                    android:background="@drawable/edit_text_post"
                     android:id="@+id/pickUp_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="270dp"
+                    android:layout_height="50dp"
                     android:hint="Pick Up location"
                     android:layout_below="@+id/Sellpos_tEditText"
                     android:inputType="text"
                     />
 
                 <EditText
+                    android:padding="10dp"
+                    android:background="@drawable/edit_text_post"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="270dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="Price"
+                    android:hint="  Price"
                     android:layout_below="@+id/pickUp_location"
                     android:visibility="invisible"
-
                     />
 
                 <Button
-                    android:layout_marginTop="25dp"
+
+                    android:layout_marginTop="70dp"
                     android:layout_marginLeft="130dp"
                     android:text="Post"
                     android:textStyle="bold"
@@ -111,6 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/price"
+                    android:background="@drawable/rounded_button"
                     />
             </RelativeLayout>
         </ScrollView>
