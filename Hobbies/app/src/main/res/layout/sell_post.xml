@@ -113,7 +113,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/pencil"
+                    android:drawableLeft="@drawable/key"
                     android:padding="10dp"
                     android:background="@drawable/edit_text_post"
                     android:id="@+id/pickUp_location"

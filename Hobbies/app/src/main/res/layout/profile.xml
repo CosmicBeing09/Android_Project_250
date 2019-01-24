@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/profile_fragmant_layout"
     >
-
+    
 <FrameLayout
     android:id="@+id/profile_fragmant"
     android:layout_width="match_parent"
@@ -15,12 +15,14 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/profile_fragmant_relative"
             >
             <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="20dp"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
@@ -29,7 +31,7 @@
                 android:layout_marginBottom="10dp"
                 />
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_width="60dp"
                 android:layout_height="25dp"
                 android:id="@+id/nameText"
@@ -39,7 +41,7 @@
                 android:textStyle="bold"
                 />
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="40dp"
                 android:layout_width="300dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="65dp"
@@ -156,13 +158,14 @@
                 android:textStyle="bold"
                 />
             <Button
-                android:layout_marginTop="25dp"
-                android:layout_marginLeft="130dp"
+                android:background="@drawable/rounded_button"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="110dp"
                 android:text="Edit Profile"
                 android:textStyle="bold"
                 android:id="@+id/ProfileEditButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="70dp"
                 android:layout_below="@id/produceText"
                 />
 

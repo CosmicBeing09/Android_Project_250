@@ -19,11 +19,12 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:layout_marginTop="30dp"
                 android:id="@+id/ProfileImage"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="120dp"
+                android:layout_marginLeft="115dp"
                 android:src="@mipmap/user"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
@@ -32,7 +33,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_width="300dp"
                 android:layout_height="70dp"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="45dp"
                 android:id="@+id/postEditText"
                 android:drawableLeft="@drawable/pencil"
                 android:drawablePadding="10dp"
@@ -45,7 +46,7 @@
 
             <Button
                 android:layout_marginTop="150dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="100dp"
                 android:text="Post"
                 android:textStyle="bold"
                 android:id="@+id/submitPost"
