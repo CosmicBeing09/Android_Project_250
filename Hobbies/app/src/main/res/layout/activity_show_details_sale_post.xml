@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".show_details_sale_post">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,11 +39,20 @@
                 android:layout_marginTop="5dp"
                 android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="190dp"
                 android:id="@+id/Details_post_image"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name : "
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:layout_below="@+id/Details_post_image"
+                android:id="@+id/a1"/>
 
             <TextView
+                android:layout_toRightOf="@+id/a1"
                 android:padding="10dp"
                 android:layout_below="@+id/Details_post_image"
                 android:layout_width="wrap_content"
@@ -57,11 +62,20 @@
                 android:textStyle="bold"
                 android:id="@+id/Details_userName"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address : "
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:layout_below="@+id/a1"
+                android:id="@+id/a2"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Details_userName"
+                android:layout_below="@+id/a1"
+                android:layout_toRightOf="@+id/a2"
                 android:padding="10dp"
                 android:text="Location"
                 android:textStyle="bold"
@@ -71,7 +85,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Details_location"
+                android:text="Address : "
+                android:textSize="18dp"
+                android:padding="10dp"
+                android:layout_below="@+id/a2"
+                android:id="@+id/a3"/>
+            <TextView
+                android:layout_toRightOf="@+id/a3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/a2"
                 android:padding="10dp"
                 android:text="Pet Type"
                 android:textStyle="bold"
@@ -79,44 +102,74 @@
                 android:id="@+id/Details_petType"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Details_petType"
-                android:padding="10dp"
-                android:text="Post.................."
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:id="@+id/Details_post"
-                />
+                android:id="@+id/card_view2"
+                android:layout_below="@+id/Details_petType">
+                <TextView
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Post.................."
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:id="@+id/Details_post"
+                    />
+            </android.support.v7.widget.CardView>
+
 
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Details_post"
+                android:layout_below="@+id/card_view2"
                 android:padding="10dp"
                 android:text="$"
+                android:layout_marginRight="40dp"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:textColor="@color/colorAccent"
                 />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_button"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Details_post"
+                android:layout_below="@+id/card_view2"
                 android:padding="10dp"
                 android:text="1000"
+                android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:id="@+id/Details_price"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/colorAccent"
+                android:layout_marginLeft="50dp"
+                android:textColor="#000"
+                />
+
+            <ImageButton
+                android:id="@+id/Details_notificationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Details_price"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_menu_send"
+                android:layout_marginLeft="200dp"
+                />
+            <ImageButton
+                android:id="@+id/Details_messageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Details_price"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_chat_black_24dp"
+                android:layout_marginLeft="110dp"
                 />
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

@@ -12,10 +12,10 @@
         android:background="@color/white"
         >
         <!--<View-->
-            <!--android:layout_width="380dp"-->
-            <!--android:layout_height="60dp"-->
-            <!--android:background="@color/colorAccent"-->
-            <!--/>-->
+        <!--android:layout_width="380dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:background="@color/colorAccent"-->
+        <!--/>-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -49,50 +49,53 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Type of Sell post"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
                     android:layout_below="@+id/pet_type"
                     android:layout_marginTop="10dp"/>
                 <RadioGroup
+                    android:layout_marginLeft="20dp"
                     android:id="@+id/radio_group"
                     android:layout_below="@+id/sell_type_text_ID"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/sell_type_text_ID">
+                    >
 
-                <RadioButton
-                    android:id="@+id/adpotationRadio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Adoptation"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    />
+                    <RadioButton
+                        android:id="@+id/adpotationRadio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adoptation"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        />
 
-                <RadioButton
-                    android:id="@+id/sellRadio"
-                    android:layout_below="@+id/adpotationRadio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sell "
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    />
+                    <RadioButton
+                        android:id="@+id/sellRadio"
+                        android:layout_below="@+id/adpotationRadio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sell "
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        />
 
                 </RadioGroup>
 
                 <ImageButton
                     android:id="@+id/Sale_Image"
-                    android:layout_toRightOf="@+id/Sellpos_tEditText"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_below="@+id/radio_group"
+                    android:layout_marginLeft="31dp"
                     android:layout_marginTop="30dp"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/key"
+                    android:layout_toRightOf="@+id/Sellpos_tEditText"
                     android:adjustViewBounds="true"
+                    android:background="#fff"
                     android:scaleType="fitXY"
-                    />
+                    android:src="@mipmap/camera" />
                 <EditText
                     android:layout_marginTop="30dp"
                     android:layout_width="250dp"

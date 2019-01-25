@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".normal_post_details">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:id="@+id/card"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/show_details_userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="XXXXXXX"
+                        android:textSize="27dp"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textStyle="italic"
+                        />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/show_details_userImage"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+
+                        android:layout_marginEnd="12dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_background" />
+
+
+                    <ImageView
+                        android:layout_below="@+id/show_details_userImage"
+                        android:layout_marginTop="5dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:id="@+id/show_detaols_post_image"
+                        />
+
+                    <TextView
+                        android:padding="10dp"
+                        android:layout_below="@+id/show_detaols_post_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:id="@+id/show_details_post_text"
+                        />
+
+                    <TextView
+                        android:id="@+id/show_details_comment_title"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/colorAccent"
+                        android:text="Comments: "
+                        android:textSize="30dp"
+                        android:layout_below="@id/show_details_post_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/comment_recycler"
+                android:layout_below="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hi"
+        android:layout_alignParentBottom="true">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="2dp"
+            android:background="@color/white"
+            android:layout_toStartOf="@+id/addBtn"
+            android:layout_centerVertical="true"
+            >
+            <EditText
+                android:id="@+id/commentEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="#fff"
+                android:hint="Type a Message"
+                android:textSize="18sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorAccent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="5dp"
+            android:elevation="4dp"
+            android:layout_centerInParent="true"
+            >
+            <ImageView
+                android:id="@+id/CommentSendButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_menu_send"
+                android:tint="#fff"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

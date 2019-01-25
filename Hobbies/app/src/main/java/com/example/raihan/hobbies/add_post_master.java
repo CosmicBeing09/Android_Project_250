@@ -21,18 +21,6 @@ public class add_post_master extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post_master);
 
-//        Intent intent = getIntent();
-//        node = intent.getStringExtra("user");
-
-//        normalPost = new normal_post_fragmant();
-//        salePost = new sell_post_fragment();
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putString("user",node);
-//
-//        normalPost.setArguments(bundle);
-//        salePost.setArguments(bundle);
-
 
 
         viewPager = (ViewPager)findViewById(R.id.view_pager);

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".locate_user">
+
+    <EditText
+        android:id="@+id/search_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Search Pet  "
+        android:inputType="text"
+        />
+    <EditText
+        android:id="@+id/search_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_pet"
+        android:hint="Search Radius"
+        />
+
+    <ImageButton
+        android:id="@+id/search_imageButton"
+        android:layout_marginLeft="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/search_button"
+        android:contentDescription="TODO" />
+
+    <ToggleButton
+        android:id="@+id/preview_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:textOff="Map"
+        android:textOn="Post"
+        />
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="90dp"
+            />
+
+</RelativeLayout>

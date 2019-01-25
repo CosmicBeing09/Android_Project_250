@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/manage_sell_post_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXXXXXX"
+                android:textSize="27dp"
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="italic"
+                />
+
+
+            <ImageView
+
+                android:src="@mipmap/ic_launcher"
+                android:layout_below="@+id/manage_sell_post_type"
+                android:layout_marginTop="50dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/manage_sell_post_image"
+                />
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:background="#7de1dada"
+                android:layout_marginTop="200dp"
+                android:padding="10dp"
+                android:layout_below="@+id/manage_sell_post_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:id="@+id/manage_sell_post_location"
+                />
+
+            <TextView
+                android:background="@drawable/rounded_button"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right|bottom"
+                android:padding="10dp"
+                android:layout_below="@+id/manage_sell_post_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:id="@+id/manage_sell_post_price"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent"
+                android:layout_gravity="bottom"/>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

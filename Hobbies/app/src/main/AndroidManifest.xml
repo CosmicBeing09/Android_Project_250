@@ -28,11 +28,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
-
-        </activity>
-        <activity android:name=".register"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".register" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -53,7 +50,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".show_details_sale_post" />
         <activity android:name=".profile_edit" />
-        <activity android:name=".message_view"></activity>
+        <activity android:name=".message_view" />
+        <activity android:name=".manage_post_master" />
+        <activity android:name=".normal_post_details"></activity>
     </application>
 
 </manifest>
