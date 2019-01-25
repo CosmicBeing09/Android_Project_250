@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile_edit">
+    tools:context=".profile_edit"
+    >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -12,7 +13,9 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/activity_horizontal_margin"
+
+        >
 
 
         <ImageView
@@ -27,36 +30,56 @@
 
 
         <EditText
+            android:drawableLeft="@drawable/man"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
             android:id="@+id/Edit_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Name *"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@android:color/background_dark" />
 
         <EditText
+            android:drawableLeft="@drawable/username_register"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
             android:id="@+id/Edit_Address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Address (Location) *"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@android:color/background_dark" />
 
         <EditText
+            android:drawableLeft="@drawable/phone_register"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
             android:id="@+id/Edit_PhoneNo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Phone No"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@android:color/background_dark" />
 
         <EditText
+            android:drawableLeft="@drawable/hobby"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
             android:id="@+id/Edit_hobby"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Hobby"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -64,10 +87,15 @@
 
 
         <EditText
+            android:drawableLeft="@drawable/occupation"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
             android:id="@+id/Edit_Occupation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Occupation"
+            android:background="@drawable/edit_text_post"
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textColor="@android:color/background_dark" />
@@ -79,8 +107,8 @@
             style="?android:textAppearanceSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
+            android:layout_marginTop="46dp"
+            android:background="@drawable/rounded_button"
             android:text="Submit"
             android:textColor="@android:color/black"
             android:textStyle="bold" />

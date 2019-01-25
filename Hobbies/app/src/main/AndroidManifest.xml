@@ -51,7 +51,8 @@
         <activity android:name=".show_details_sale_post" />
         <activity android:name=".profile_edit" />
         <activity android:name=".message_view" />
-        <activity android:name=".manage_post_master"></activity>
+        <activity android:name=".manage_post_master" />
+        <activity android:name=".normal_post_details"></activity>
     </application>
 
 </manifest>

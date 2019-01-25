@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
+        android:background="#e2dede"
         >
 
         <RelativeLayout
@@ -32,8 +33,9 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="70dp"
                 android:text="raihan123"
+                android:textColor="#000"
                 android:textStyle="bold"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 />
 
             <TextView
@@ -43,10 +45,16 @@
                 android:layout_below="@+id/id_previewName"
                 android:layout_marginLeft="100dp"
                 android:text="Hathazari"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:layout_marginTop="5dp"
                 />
 
+            <TextView
+                android:layout_below="@+id/id_previewLocation"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#beb5b5"
+                android:layout_margin="15dp"/>
 
 
         </RelativeLayout>
