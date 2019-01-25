@@ -15,10 +15,11 @@ import java.util.ArrayList;
 
 public class manage_sell_post_adapter extends RecyclerView.Adapter<manage_sell_post_adapter.MyViewHolder> {
 
+    private ItemClickListener clickListener;
     private ArrayList<sell_post_object> obj;
     private Context context;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView postType,location,price;
         ImageView post_image;
 
@@ -33,9 +34,15 @@ public class manage_sell_post_adapter extends RecyclerView.Adapter<manage_sell_p
 
             this.post_image = itemView.findViewById(R.id.manage_sell_post_image);
 
+            itemView.setOnClickListener(this);
+
             // itemView.setTag(itemView);
         }
 
+        @Override
+        public void onClick(View view) {
+            if (clickListener != null) clickListener.onClick(view, getAdapterPosition());
+        }
     }
 
     public manage_sell_post_adapter(ArrayList<sell_post_object> obj, Context context)
@@ -71,6 +78,10 @@ public class manage_sell_post_adapter extends RecyclerView.Adapter<manage_sell_p
     @Override
     public int getItemCount() {
         return obj.size();
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
     }
 
 

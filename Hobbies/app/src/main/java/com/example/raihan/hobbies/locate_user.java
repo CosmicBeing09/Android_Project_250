@@ -139,7 +139,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                 mMap.addCircle(circleOptions);
 
 
-                searchType[0] = search.getText().toString().trim();
+                searchType[0] = search.getText().toString().toLowerCase().trim();
                 fragment_petType = searchType[0];
 
                 mDatabase = FirebaseDatabase.getInstance().getReference("global_sale_post");

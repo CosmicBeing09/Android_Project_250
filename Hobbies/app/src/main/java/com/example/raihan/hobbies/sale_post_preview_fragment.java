@@ -52,34 +52,6 @@ public class sale_post_preview_fragment extends Fragment implements ItemClickLis
         recyclerView.setLayoutManager(layoutManager);
         ppa = new post_preview_adapter(arrayList,getActivity());
 
-//        databaseReference.child(fragment_petType).addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                sell_post_object ob = dataSnapshot.getValue(sell_post_object.class);
-//                arrayList.add(ob);
-//                ppa.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
 
         recyclerView.setAdapter(ppa);
         ppa.setClickListener(this);

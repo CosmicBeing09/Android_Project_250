@@ -52,7 +52,9 @@
         <activity android:name=".profile_edit" />
         <activity android:name=".message_view" />
         <activity android:name=".manage_post_master" />
-        <activity android:name=".normal_post_details"></activity>
+        <activity android:name=".normal_post_details" />
+        <activity android:name=".edit_normal_post" />
+        <activity android:name=".edit_sell_post"></activity>
     </application>
 
 </manifest>

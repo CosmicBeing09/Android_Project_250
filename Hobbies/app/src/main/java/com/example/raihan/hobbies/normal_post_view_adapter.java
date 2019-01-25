@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class normal_post_view_adapter extends RecyclerView.Adapter<normal_post_view_adapter.MyViewHolder> {
+    private ItemClickListener clickListener;
     private ArrayList<normal_post_object> obj;
     private Context context;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView text,user_name;
         ImageView post_image,user_image;
 
@@ -35,11 +36,17 @@ public class normal_post_view_adapter extends RecyclerView.Adapter<normal_post_v
             this.post_image = itemView.findViewById(R.id.post_image);
             this.user_image = itemView.findViewById(R.id.userImage);
 
+            itemView.setOnClickListener(this);
+
             // itemView.setTag(itemView);
 
 
         }
 
+        @Override
+        public void onClick(View view) {
+            if (clickListener != null) clickListener.onClick(view, getAdapterPosition());
+        }
     }
 
     public normal_post_view_adapter(ArrayList<normal_post_object> obj, Context context)
@@ -77,6 +84,10 @@ public class normal_post_view_adapter extends RecyclerView.Adapter<normal_post_v
     @Override
     public int getItemCount() {
         return obj.size();
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.clickListener = itemClickListener;
     }
 
 

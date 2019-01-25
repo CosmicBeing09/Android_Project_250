@@ -1,5 +1,6 @@
 package com.example.raihan.hobbies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 import static com.example.raihan.hobbies.MainActivity.node;
 
-public class manage_sell_post_fragment extends Fragment {
+public class manage_sell_post_fragment extends Fragment implements ItemClickListener {
 
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
@@ -75,6 +76,15 @@ public class manage_sell_post_fragment extends Fragment {
         });
 
         recyclerView.setAdapter(mspa);
+        mspa.setClickListener(this);
 
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        final sell_post_object spo = arrayList.get(position);
+        Intent i = new Intent(getActivity(),edit_sell_post.class);
+        i.putExtra("object",spo);
+        startActivity(i);
     }
 }
