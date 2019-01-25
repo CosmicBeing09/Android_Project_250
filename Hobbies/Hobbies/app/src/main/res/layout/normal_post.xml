@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <FrameLayout
+        android:id="@+id/normal_post_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/ProfileImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="100dp"
+                android:src="@mipmap/add_btn"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                />
+            <EditText
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="350dp"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/postEditText"
+                android:layout_below="@+id/ProfileImage"
+                android:hint="     Write Your Post..."
+                android:background="@drawable/bound_background"
+                android:inputType="text"
+                />
+
+            <Button
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="130dp"
+                android:text="Post"
+                android:textStyle="bold"
+                android:id="@+id/submitPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/postEditText"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+
+    </FrameLayout>
+
+</RelativeLayout>

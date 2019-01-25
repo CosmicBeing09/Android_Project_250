@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "844642281729",
+    "firebase_url": "https://hobbies-30277.firebaseio.com",
+    "project_id": "hobbies-30277",
+    "storage_bucket": "hobbies-30277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844642281729:android:c815ebb467f7950c",
+        "android_client_info": {
+          "package_name": "com.example.raihan.hobbies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "844642281729-ad4hhdnt9rcjl6p2r5asi1rc3uk6o4h9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.raihan.hobbies",
+            "certificate_hash": "8168abe3f15310340b9c94fae99db3c52a6e18d1"
+          }
+        },
+        {
+          "client_id": "844642281729-dhq686h0ik8qt32pk3hbprhbd0i3mrui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0lV2zGUT7r1SG4JHG7sBuGsYb7RIEGVo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "844642281729-dhq686h0ik8qt32pk3hbprhbd0i3mrui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
