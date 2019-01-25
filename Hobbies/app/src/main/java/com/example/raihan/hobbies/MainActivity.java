@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -51,10 +52,12 @@ public class MainActivity extends AppCompatActivity
     private normal_post_view_adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private DatabaseReference databaseReference,profileInfo;
+    private DatabaseReference databaseReference,profileInfo,profileDatabase;
     private RelativeLayout content_main;
     private TextView name,location;
     TabLayout tabLayout;
+    public static String user_location;
+    public static profile_info pi;
 
 
     @Override
@@ -128,24 +131,27 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
+                profileDatabase = FirebaseDatabase.getInstance().getReference("Users_info");
+//                profileDatabase.child(node).addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        profile_info pi = dataSnapshot.getValue(profile_info.class);
+//                        user_location = pi.getAddress().trim();
+//                        Toast.makeText(MainActivity.this,user_location,Toast.LENGTH_LONG).show();
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
 
-                fragment = new rescue_call_fragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("user",node);
-                fragment.setArguments(bundle);
+                user_location = pi.getAddress().trim();
 
-                if(fragment!=null)
-                {
-                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                    ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
-                    ft.commit();
-                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-                    drawer.closeDrawer(GravityCompat.START);
 
-                }
+                Intent intent = new Intent(MainActivity.this,locate_user.class);
+                startActivity(intent);
+                //intent.putExtra("location",user_location);
             }
         });
 
@@ -167,10 +173,10 @@ public class MainActivity extends AppCompatActivity
         profileInfo.child(node).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                profile_info pn = dataSnapshot.getValue(profile_info.class);
-                Picasso.get().load(pn.getRegister_ImageUri()).fit().into(imageView);
-                name.setText(pn.getRegister_name());
-                location.setText(pn.getAddress());
+                pi = dataSnapshot.getValue(profile_info.class);
+                Picasso.get().load(pi.getRegister_ImageUri()).fit().into(imageView);
+                name.setText(pi.getRegister_name());
+                location.setText(pi.getAddress());
             }
 
             @Override
@@ -262,28 +268,65 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-       if (id == R.id.nav_gallery) {
-
-//           fragment = new sell_post_fragment();
-//           Bundle bundle = new Bundle();
-//           bundle.putString("user",node);
-//           fragment.setArguments(bundle);
+       if (id == R.id.nav_add_post) {
 
            Intent intent = new Intent(MainActivity.this,add_post_master.class);
            startActivity(intent);
-//           intent.putExtra("user",node);
 
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_managePost) {
 
-            //fragment2 = new rescue_call_fragment();
+//           android.support.v4.app.Fragment fg = new manage_sell_post_fragment();
+//
+//           if(fg!=null)
+//           {
+//               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+//               ft.replace(R.id.screenArea,fg).addToBackStack("Tag");
+//               ft.commit();
+//               DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//               drawer.closeDrawer(GravityCompat.START);
+//           }
 
 
-        } else if (id == R.id.nav_manage) {
+           Intent intent = new Intent(MainActivity.this,manage_post_master.class);
+           startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+       }
+
+        else if (id == R.id.nav_chat) {
+
+           fragment2 = new id_preview_fragment();
+
+
+           if(fragment2!=null)
+           {
+               fragment = null;
+               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+               ft.replace(R.id.screenArea,fragment2).addToBackStack("Tag");
+               ft.commit();
+               DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+               drawer.closeDrawer(GravityCompat.START);
+           }
+
+        } else if (id == R.id.nav_notification) {
+
+
+           fragment = new notification_preview();
+           if(fragment!=null)
+           {
+               fragment2=null;
+               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+               ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
+               ft.commit();
+               DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+               drawer.closeDrawer(GravityCompat.START);
+
+           }
+
         }
 //        else if(id == R.id.imageView)
 //        {
@@ -297,25 +340,7 @@ public class MainActivity extends AppCompatActivity
 //            ft.commit();
 //        }
 
-//        if(fragment!=null)
-//        {
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-//            ft.replace(R.id.screenArea,fragment).addToBackStack("Tag");
-//            ft.commit();
-//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//            drawer.closeDrawer(GravityCompat.START);
-//
-//        }
-//        if(fragment2!=null)
-//        {
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-//            ft.replace(R.id.screenArea,fragment2).addToBackStack("tag");
-//            ft.commit();
-//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//            drawer.closeDrawer(GravityCompat.START);
-//        }
+
 
         return true;
     }

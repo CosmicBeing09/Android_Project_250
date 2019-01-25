@@ -1,6 +1,7 @@
 package com.example.raihan.hobbies;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -20,15 +20,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import static com.example.raihan.hobbies.MainActivity.node;
 
 public class message_view extends AppCompatActivity {
 
     private List<chat_message_object> msgList = new ArrayList<>();
-    private messege_adapter ma;
-    private String user_name = "raihan123,rafa123";
+    private msg_adapter ma;
+    private String user_name;
+    private String rev_user_name;
     private RecyclerView recyclerView;
     private EditText messageET;
     private ImageView sendButton;
@@ -40,12 +40,18 @@ public class message_view extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_view);
 
+        Intent intent = getIntent();
+        String temp = intent.getStringExtra("friend");
+
+        user_name = node +","+temp;
+        rev_user_name = temp+","+node;
+
         recyclerView = (RecyclerView)findViewById(R.id.MessageRecyclerView);
         messageET = (EditText)findViewById(R.id.MessageEditText);
         sendButton = (ImageView) findViewById(R.id.MessageSendButton);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        mDatabase = FirebaseDatabase.getInstance().getReference("chat_message").child(user_name);
+        databaseReference = FirebaseDatabase.getInstance().getReference("chat_message");
+        mDatabase = FirebaseDatabase.getInstance().getReference("chat_message");
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,13 +61,14 @@ public class message_view extends AppCompatActivity {
                 if (!message.equals("")) {
 
                     chat_message_object chatMessage = new chat_message_object(message,node);
-                    databaseReference.child("chat_message").child(user_name).push().setValue(chatMessage);
+                    databaseReference.child(user_name).push().setValue(chatMessage);
+                    databaseReference.child(rev_user_name).push().setValue(chatMessage);
                 }
                 messageET.setText("");
             }
         });
 
-        ma = new messege_adapter(msgList,node);
+        ma = new msg_adapter(msgList,node);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -71,7 +78,7 @@ public class message_view extends AppCompatActivity {
         try {
 
 
-            mDatabase.addChildEventListener(new ChildEventListener() {
+            mDatabase.child(user_name).addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     msgList.add(dataSnapshot.getValue(chat_message_object.class));

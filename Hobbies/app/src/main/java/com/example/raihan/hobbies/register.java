@@ -155,7 +155,7 @@ public class register extends AppCompatActivity  implements View.OnClickListener
                     mDatabase.child(user_name).setValue(pn);
 
 
-                    global_profile_info gpi = new global_profile_info(name,address,phoneNo,downloadUri.toString());
+                    global_profile_info gpi = new global_profile_info(user_name,address,phoneNo,downloadUri.toString());
                     gDatabase.push().setValue(gpi);
 
 

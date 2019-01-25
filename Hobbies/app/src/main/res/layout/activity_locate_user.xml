@@ -13,6 +13,13 @@
         android:hint="Search Pet  "
         android:inputType="text"
         />
+    <EditText
+        android:id="@+id/search_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_pet"
+        android:hint="Search Radius"
+        />
 
     <ImageButton
         android:id="@+id/search_imageButton"
@@ -38,7 +45,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="90dp"
             />
 
 </RelativeLayout>

@@ -28,7 +28,7 @@ public class sale_post_preview_fragment extends Fragment implements ItemClickLis
     private static RecyclerView recyclerView;
     private post_preview_adapter ppa;
     private DatabaseReference databaseReference;
-    final ArrayList<sell_post_object> arrayList = new ArrayList<>();
+    public ArrayList<sell_post_object> arrayList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -40,40 +40,46 @@ public class sale_post_preview_fragment extends Fragment implements ItemClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Bundle bundle = this.getArguments();
+        if(bundle!=null)
+        {
+            arrayList = bundle.getParcelableArrayList("arrayList");
+        }
+
         databaseReference = FirebaseDatabase.getInstance().getReference("global_sale_post");
         recyclerView = (RecyclerView) view.findViewById(R.id.sale_post_preview_recycler);
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         ppa = new post_preview_adapter(arrayList,getActivity());
 
-        databaseReference.child(fragment_petType).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                sell_post_object ob = dataSnapshot.getValue(sell_post_object.class);
-                arrayList.add(ob);
-                ppa.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference.child(fragment_petType).addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                sell_post_object ob = dataSnapshot.getValue(sell_post_object.class);
+//                arrayList.add(ob);
+//                ppa.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
         recyclerView.setAdapter(ppa);
         ppa.setClickListener(this);

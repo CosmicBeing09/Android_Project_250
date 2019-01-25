@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".show_details_sale_post">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,7 +39,7 @@
                 android:layout_marginTop="5dp"
                 android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="190dp"
                 android:id="@+id/Details_post_image"
                 />
 
@@ -114,9 +110,27 @@
                 android:textColor="@color/colorAccent"
                 />
 
+            <ImageButton
+                android:id="@+id/Details_notificationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Details_price"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_menu_send"
+                android:layout_marginLeft="200dp"
+                />
+            <ImageButton
+                android:id="@+id/Details_messageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Details_price"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_chat_black_24dp"
+                android:layout_marginLeft="110dp"
+                />
+
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
 
 
 </LinearLayout>

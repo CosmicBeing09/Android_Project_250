@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.example.raihan.hobbies.MainActivity.node;
 
-class messege_adapter extends RecyclerView.Adapter<messege_adapter.MyViewHolder> {
+class msg_adapter extends RecyclerView.Adapter<msg_adapter.MyViewHolder> {
 
 
     private List<chat_message_object> cmo;
@@ -30,7 +30,7 @@ class messege_adapter extends RecyclerView.Adapter<messege_adapter.MyViewHolder>
 
         }
     }
-    public messege_adapter(List<chat_message_object>cmo,String id)
+    public msg_adapter(List<chat_message_object>cmo, String id)
     {
         this.cmo = cmo;
         this.id = id;
@@ -38,13 +38,13 @@ class messege_adapter extends RecyclerView.Adapter<messege_adapter.MyViewHolder>
 
     @NonNull
     @Override
-    public messege_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public msg_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_list,parent,false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull messege_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull msg_adapter.MyViewHolder holder, int position) {
 
         chat_message_object cmo1 = cmo.get(position);
         if(cmo1.getMessageUser().equals(node))

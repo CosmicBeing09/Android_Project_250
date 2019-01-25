@@ -173,7 +173,7 @@ public class sell_post_fragment extends android.support.v4.app.Fragment {
             S_type = "Adoptation";
         }
         S_location = location.getText().toString().trim();
-        S_pet_type = spinner.getSelectedItem().toString().trim();
+        S_pet_type = spinner.getSelectedItem().toString().trim().toLowerCase();
 
 
         if(SelectImgaeUri != null)
