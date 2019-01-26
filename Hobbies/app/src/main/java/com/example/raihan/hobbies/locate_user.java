@@ -81,6 +81,11 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_locate_user);
 
+        final Integer a= 20;
+
+
+
+
 //        Intent intent = getIntent();
 //        user_location = intent.getStringExtra("location");
         Toast.makeText(locate_user.this,user_location,Toast.LENGTH_LONG).show();
@@ -119,8 +124,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                 MarkerOptions markerOptions = new MarkerOptions();
 
                 radius = searchRadius.getText().toString().trim();
-                if(radius==null)
-                    radius = "20";
+
 
                 mMap.clear();
                 arrayList.removeAll(arrayList);
@@ -132,8 +136,11 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 mMap.addMarker(markerOptions);
 
+
+
+
                 circleOptions.center(t_latLng);
-                circleOptions.radius(Float.valueOf(radius)*1000);
+                circleOptions.radius(Integer.valueOf(radius)*1000);
                 circleOptions.strokeColor(Color.CYAN);
                 circleOptions.fillColor(0x4D000080);
                 mMap.addCircle(circleOptions);

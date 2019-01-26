@@ -77,5 +77,14 @@ public class show_details_sale_post extends AppCompatActivity {
             }
         });
 
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(show_details_sale_post.this,message_view.class);
+                intent1.putExtra("friend",spo.getUser().trim());
+                startActivity(intent1);
+            }
+        });
+
     }
 }

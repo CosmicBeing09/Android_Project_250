@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".show_details_sale_post">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -151,24 +155,28 @@
 
             <ImageButton
                 android:id="@+id/Details_notificationButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_below="@+id/Details_price"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_menu_send"
                 android:layout_marginLeft="200dp"
+                android:background="@color/white"
                 />
             <ImageButton
                 android:id="@+id/Details_messageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_below="@+id/Details_price"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:src="@drawable/ic_chat_black_24dp"
                 android:layout_marginLeft="110dp"
+                android:background="@color/white"
                 />
 
         </RelativeLayout>
+
+    </ScrollView>
 
 
 
