@@ -96,7 +96,9 @@ public class notification_preview extends Fragment {
 
                             }
                         }
+
                 );
+                Toast.makeText(getActivity(),"Removed",Toast.LENGTH_LONG).show();
 
             }
         });

@@ -69,7 +69,10 @@ public class user_profile extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 pn = dataSnapshot.getValue(profile_info.class);
-                Picasso.get().load(pn.getRegister_ImageUri()).into(circleImageView);
+
+                try {
+                    Picasso.get().load(pn.getRegister_ImageUri()).into(circleImageView);
+                }catch (Exception e){}
                 name.setText(pn.getRegister_name());
                 address.setText(pn.getAddress());
                 phone_no.setText(pn.getPhone_no());

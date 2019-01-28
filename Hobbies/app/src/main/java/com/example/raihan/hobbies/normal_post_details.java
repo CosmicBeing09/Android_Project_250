@@ -64,9 +64,10 @@ public class normal_post_details extends AppCompatActivity {
 
         user_name.setText(npo.getUser());
         post_text.setText(npo.getPost_text());
-
-        Picasso.get().load(npo.getImgaeUrl()).fit().centerCrop().into(postImage);
-        Picasso.get().load(npo.getUser_imageUri()).fit().centerCrop().into(user_image);
+        try {
+            Picasso.get().load(npo.getImgaeUrl()).fit().centerCrop().into(postImage);
+            Picasso.get().load(npo.getUser_imageUri()).fit().centerCrop().into(user_image);
+        }catch (Exception e){}
 
         recyclerView = (RecyclerView) findViewById(R.id.comment_recycler);
         layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);

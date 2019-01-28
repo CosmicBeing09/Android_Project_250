@@ -63,8 +63,10 @@ public class show_details_sale_post extends AppCompatActivity {
         price.setText(spo.getPrice());
         postText.setText(spo.getPost_text());
 
-        Picasso.get().load(spo.getUser_imageUri()).fit().centerCrop().into(circleImageView);
-        Picasso.get().load(spo.getImgaeUrl()).fit().centerCrop().into(imageView);
+        try {
+            Picasso.get().load(spo.getUser_imageUri()).fit().centerCrop().into(circleImageView);
+            Picasso.get().load(spo.getImgaeUrl()).fit().centerCrop().into(imageView);
+        }catch (Exception e){}
 
         notificationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +75,7 @@ public class show_details_sale_post extends AppCompatActivity {
                 int key = new Random().nextInt();
                 String ref = String.valueOf(key);
                 notification.push().setValue(new notification_object(pi.getUser_name(),pi.getRegister_ImageUri(),spo.getImgaeUrl(),ref));
-                Toast.makeText(show_details_sale_post.this,"Notification sent",Toast.LENGTH_SHORT).show();
+                Toast.makeText(show_details_sale_post.this,"Notification sent",Toast.LENGTH_LONG).show();
             }
         });
 

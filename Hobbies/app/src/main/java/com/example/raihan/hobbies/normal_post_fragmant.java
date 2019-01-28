@@ -59,14 +59,6 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//
-//        Bundle bundle = this.getArguments();
-//        if(bundle!=null)
-//        {
-//            node = bundle.getString("user").trim();
-//        }
-
-
 
         profileImage = (ImageButton) view.findViewById(R.id.ProfileImage);
 

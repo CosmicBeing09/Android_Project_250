@@ -176,7 +176,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 pi = dataSnapshot.getValue(profile_info.class);
-                Picasso.get().load(pi.getRegister_ImageUri()).fit().into(imageView);
+                try {
+
+                    Picasso.get().load(pi.getRegister_ImageUri()).fit().into(imageView);
+                }catch (Exception e){}
                 name.setText(pi.getRegister_name());
                 location.setText(pi.getAddress());
             }

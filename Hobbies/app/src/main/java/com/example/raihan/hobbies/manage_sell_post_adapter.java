@@ -71,7 +71,9 @@ public class manage_sell_post_adapter extends RecyclerView.Adapter<manage_sell_p
         location.setText(obj.get(i).getLocation());
         price.setText(obj.get(i).getPrice());
 
-        Picasso.get().load(obj.get(i).getImgaeUrl()).fit().centerCrop().into(post_image);
+        try {
+            Picasso.get().load(obj.get(i).getImgaeUrl()).fit().centerCrop().into(post_image);
+        }catch (Exception e){}
 
     }
 

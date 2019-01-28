@@ -117,8 +117,11 @@ public class notification_adapter extends RecyclerView.Adapter<notification_adap
 
 
         user_name.setText(obj.get(i).getUser_name()+" is interested in your post");
-        Picasso.get().load(obj.get(i).getPost_imageUri()).fit().centerCrop().into(postImage);
-        Picasso.get().load(obj.get(i).getUser_imageUri()).fit().centerCrop().into(userImage);
+
+        try {
+            Picasso.get().load(obj.get(i).getPost_imageUri()).fit().centerCrop().into(postImage);
+            Picasso.get().load(obj.get(i).getUser_imageUri()).fit().centerCrop().into(userImage);
+        }catch (Exception e){}
 
 
 

@@ -71,7 +71,10 @@ public class post_preview_adapter extends RecyclerView.Adapter<post_preview_adap
 
         petType.setText(obj.get(position).getPet_type());
         postType.setText(obj.get(position).getPost_type());
-        Picasso.get().load(obj.get(position).getUser_imageUri()).fit().centerCrop().into(userImage);
+
+        try {
+            Picasso.get().load(obj.get(position).getImgaeUrl()).fit().centerCrop().into(userImage);
+        }catch (Exception e){}
     }
 
     @Override

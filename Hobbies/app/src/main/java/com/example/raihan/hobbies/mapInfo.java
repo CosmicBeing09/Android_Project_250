@@ -41,7 +41,10 @@ public class mapInfo implements GoogleMap.InfoWindowAdapter{
 
             sell_post_object spo = (sell_post_object) marker.getTag();
 
-            Picasso.get().load(spo.getUser_imageUri()).into(imageView);
+            try {
+                Picasso.get().load(spo.getImgaeUrl()).into(imageView);
+            }catch (Exception e){}
+
             name.setText(spo.getUser());
             phone_no.setText(spo.getPet_type());
 

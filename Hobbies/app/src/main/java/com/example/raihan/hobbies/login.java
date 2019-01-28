@@ -59,7 +59,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                                 //i.putExtra("Type", "Driver");
                                 i.putExtra("user", email);
                                 Dialog.dismiss();
-                                Toast.makeText(login.this, "Successful",
+                                Toast.makeText(login.this, "Logged in!",
 
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(i);

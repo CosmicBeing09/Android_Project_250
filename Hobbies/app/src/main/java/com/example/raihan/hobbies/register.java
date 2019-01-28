@@ -99,14 +99,14 @@ public class register extends AppCompatActivity  implements View.OnClickListener
                 Toast.makeText(getApplicationContext(), "Enter address!", Toast.LENGTH_SHORT).show();
                 return;
             }
-            if (password.length() < 6) {
-                Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+            if (password.length() <= 4) {
+                Toast.makeText(getApplicationContext(), "Password too short, enter minimum 4 characters!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
 
             final ProgressDialog Dialog = new ProgressDialog(register.this);
-            Dialog.setMessage("Doing something...");
+            Dialog.setMessage("Creating Account...");
             Dialog.show();
 
 
@@ -165,7 +165,10 @@ public class register extends AppCompatActivity  implements View.OnClickListener
         else if(SelectImgaeUri == null)
         {
             profile_info pn = new profile_info(null,name,address,phoneNo,user_name,hobby,occcupation);
-            mDatabase.push().child(user_name).setValue(pn);
+            mDatabase.child(user_name).setValue(pn);
+
+            global_profile_info gpi = new global_profile_info(user_name,address,phoneNo,null);
+            gDatabase.push().setValue(gpi);
         }
     }
 

@@ -61,7 +61,9 @@ public class comment_adapter extends RecyclerView.Adapter<comment_adapter.MyView
 
         name.setText(obj.get(position).getCommentor()+": ");
         text.setText(obj.get(position).getText());
-        Picasso.get().load(obj.get(position).getUri()).fit().centerCrop().into(userImage);
+        try {
+            Picasso.get().load(obj.get(position).getUri()).fit().centerCrop().into(userImage);
+        }catch (Exception e){}
 
     }
 

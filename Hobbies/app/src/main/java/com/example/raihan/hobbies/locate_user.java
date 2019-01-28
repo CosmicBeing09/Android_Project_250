@@ -46,11 +46,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.raihan.hobbies.MainActivity.node;
+import static com.example.raihan.hobbies.MainActivity.pi;
 import static com.example.raihan.hobbies.MainActivity.user_location;
 
 public class locate_user extends FragmentActivity implements OnMapReadyCallback {
 
-    public String search_location,radius;
+    public String search_location,radius=null;
     private EditText searchRadius;
     public static final int REQUEST_LOCATION_PERMISSION = 1;
     DatabaseReference profileDatabase;
@@ -97,15 +98,6 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
 
 
-//        map_button = (Button) findViewById(R.id.map_button);
-
-
-
-//        Intent intent = getIntent();
-//        user_location = intent.getStringExtra("user_location").toString().trim();
-//        radius = intent.getStringExtra("radius").toString().trim();
-
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -115,20 +107,28 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
 
         final String[] searchType = new String[1];
+        searchType[0] = null;
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+//                if(radius.isEmpty())
+//                {
+//                    radius="20";
+//                }
+
+                radius = searchRadius.getText().toString().trim();
+                searchType[0] = search.getText().toString().toLowerCase().trim();
+                if(!radius.isEmpty() && !searchType[0].isEmpty()){
                 CircleOptions circleOptions = new CircleOptions();
                 MarkerOptions markerOptions = new MarkerOptions();
 
-                radius = searchRadius.getText().toString().trim();
+
 
 
                 mMap.clear();
                 arrayList.removeAll(arrayList);
-
 
 
                 markerOptions.position(t_latLng);
@@ -137,16 +137,14 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                 mMap.addMarker(markerOptions);
 
 
-
-
                 circleOptions.center(t_latLng);
-                circleOptions.radius(Integer.valueOf(radius)*1000);
+                circleOptions.radius(Integer.valueOf(radius) * 1000);
                 circleOptions.strokeColor(Color.CYAN);
                 circleOptions.fillColor(0x4D000080);
                 mMap.addCircle(circleOptions);
 
 
-                searchType[0] = search.getText().toString().toLowerCase().trim();
+
                 fragment_petType = searchType[0];
 
                 mDatabase = FirebaseDatabase.getInstance().getReference("global_sale_post");
@@ -177,7 +175,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                                     float results[] = new float[100];
                                     Location.distanceBetween(userAddress.getLatitude(), userAddress.getLongitude(), hostAddress.getLatitude(), hostAddress.getLongitude(), results);
 
-                                    if (results[0] / 1000 <= Float.valueOf(radius)) {
+                                    if (results[0] / 1000 <= Float.valueOf(radius) && cpo.getUser().trim()!= pi.getUser_name().trim()) {
 
                                         mapInfo map_info = new mapInfo(locate_user.this);
                                         mMap.setInfoWindowAdapter(map_info);
@@ -225,6 +223,12 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
                     }
                 });
+
+            }
+            else
+                {
+                    Toast.makeText(locate_user.this,"Enter Pet Type and Radius Correctly",Toast.LENGTH_LONG).show();
+                }
 
             }
         });

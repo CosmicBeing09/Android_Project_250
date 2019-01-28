@@ -76,8 +76,10 @@ public class normal_post_view_adapter extends RecyclerView.Adapter<normal_post_v
 
         text.setText(obj.get(i).getPost_text());
         user_name.setText(obj.get(i).getUser());
-        Picasso.get().load(obj.get(i).getImgaeUrl()).fit().centerCrop().into(imageView);
-        Picasso.get().load(obj.get(i).getUser_imageUri()).fit().centerCrop().into(userImage);
+        try {
+            Picasso.get().load(obj.get(i).getImgaeUrl()).fit().centerCrop().into(imageView);
+            Picasso.get().load(obj.get(i).getUser_imageUri()).fit().centerCrop().into(userImage);
+        }catch (Exception e){}
 
     }
 
