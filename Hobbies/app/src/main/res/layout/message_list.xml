@@ -10,11 +10,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Raihan"
-    android:layout_marginLeft="20dp"
+    android:layout_marginLeft="5dp"
     android:textSize="20dp"
-    android:textColor="@color/colorAccent"
+    android:textColor="#bc000002"
+    android:textStyle="bold"
     android:id="@+id/chatName"
+    android:layout_toRightOf="@+id/chatImage"
     />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/chatImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/chatName"
+        android:src="@mipmap/ic_launcher"
+        />
 
     <TextView
         android:id="@+id/leftText"
@@ -23,7 +34,8 @@
         android:padding="8dp"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="10dp"
-        android:textSize="25dp"
+        android:layout_toRightOf="@+id/chatImage"
+        android:textSize="20dp"
         android:background="@drawable/left_background"
         android:text="Hey There"
         />
@@ -37,9 +49,10 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/right_background"
         android:text="Hi fellow"
+        android:textColor="@color/white"
         android:padding="8dp"
         android:elevation="2dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
 
         />
 

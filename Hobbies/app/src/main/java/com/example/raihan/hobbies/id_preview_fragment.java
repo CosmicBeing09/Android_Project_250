@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import static com.example.raihan.hobbies.MainActivity.pi;
+
 public class id_preview_fragment extends Fragment {
 
     private RecyclerView.LayoutManager layoutManager;
@@ -49,8 +51,10 @@ public class id_preview_fragment extends Fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 global_profile_info gpi = dataSnapshot.getValue(global_profile_info.class);
-                arrayList.add(gpi);
-                ipA.notifyDataSetChanged();
+                if(!gpi.getName().trim().equals(pi.getUser_name().trim())) {
+                    arrayList.add(gpi);
+                    ipA.notifyDataSetChanged();
+                }
 
             }
 

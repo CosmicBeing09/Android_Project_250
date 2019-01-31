@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.raihan.hobbies.MainActivity.node;
+import static com.example.raihan.hobbies.MainActivity.pi;
 
 public class message_view extends AppCompatActivity {
 
@@ -60,7 +61,7 @@ public class message_view extends AppCompatActivity {
                 hideKeyboardwithoutPopulate(message_view.this);
                 if (!message.equals("")) {
 
-                    chat_message_object chatMessage = new chat_message_object(message,node);
+                    chat_message_object chatMessage = new chat_message_object(message,node, pi.getRegister_ImageUri());
                     databaseReference.child(user_name).push().setValue(chatMessage);
                     databaseReference.child(rev_user_name).push().setValue(chatMessage);
                 }

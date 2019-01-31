@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.Random;
 
 import static android.app.Activity.RESULT_OK;
 import static com.example.raihan.hobbies.MainActivity.node;
@@ -54,14 +58,6 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//
-//        Bundle bundle = this.getArguments();
-//        if(bundle!=null)
-//        {
-//            node = bundle.getString("user").trim();
-//        }
-
 
 
         profileImage = (ImageButton) view.findViewById(R.id.ProfileImage);
@@ -150,8 +146,11 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
                     Uri downloadUri = taskSnapshot.getDownloadUrl();
                     Toast.makeText(getActivity(),downloadUri.toString(),Toast.LENGTH_LONG).show();
 
+                    int key = new Random().nextInt();
+                    String ref = String.valueOf(key);
 
-                    normal_post_object  npobj = new normal_post_object(downloadUri.toString(),post,node,userImage);
+
+                    normal_post_object  npobj = new normal_post_object(downloadUri.toString(),post,node,userImage,ref);
                     profileDatabase.child("post").child(node).push().setValue(npobj);
                     globalpost.push().setValue(npobj);
 
@@ -175,20 +174,41 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
 
 }
 
-class normal_post_object{
+class normal_post_object implements Parcelable {
 
 
-    private String imgaeUrl,post_text,user,user_imageUri;
-    public normal_post_object(String imageUrl,String post_text,String user,String user_imageUri)
+    private String imgaeUrl,post_text,user,user_imageUri,hint;
+    public normal_post_object(String imageUrl,String post_text,String user,String user_imageUri,String hint)
     {
         this.imgaeUrl = imageUrl;
         this.post_text = post_text;
         this.user = user;
         this.user_imageUri = user_imageUri;
+        this.hint = hint;
 
     }
 
     public normal_post_object(){}
+
+    protected normal_post_object(Parcel in) {
+        imgaeUrl = in.readString();
+        post_text = in.readString();
+        user = in.readString();
+        user_imageUri = in.readString();
+        hint = in.readString();
+    }
+
+    public static final Creator<normal_post_object> CREATOR = new Creator<normal_post_object>() {
+        @Override
+        public normal_post_object createFromParcel(Parcel in) {
+            return new normal_post_object(in);
+        }
+
+        @Override
+        public normal_post_object[] newArray(int size) {
+            return new normal_post_object[size];
+        }
+    };
 
     public String getUser() {
         return user;
@@ -220,6 +240,28 @@ class normal_post_object{
 
     public void setPost_text(String post_text) {
         this.post_text = post_text;
+    }
+
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(imgaeUrl);
+        parcel.writeString(post_text);
+        parcel.writeString(user);
+        parcel.writeString(user_imageUri);
+        parcel.writeString(hint);
     }
 }
 

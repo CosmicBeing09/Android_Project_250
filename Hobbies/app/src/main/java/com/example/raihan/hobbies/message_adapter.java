@@ -7,7 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.raihan.hobbies.MainActivity.node;
 
@@ -20,12 +24,14 @@ class msg_adapter extends RecyclerView.Adapter<msg_adapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView leftText,rightText,name;
+        private CircleImageView chatImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             name = (TextView)itemView.findViewById(R.id.chatName);
             rightText = (TextView) itemView.findViewById(R.id.rightText);
             leftText = (TextView)itemView.findViewById(R.id.leftText);
+            chatImage = (CircleImageView)itemView.findViewById(R.id.chatImage);
 
 
         }
@@ -53,14 +59,19 @@ class msg_adapter extends RecyclerView.Adapter<msg_adapter.MyViewHolder> {
             holder.name.setVisibility(View.GONE);
             holder.rightText.setVisibility(View.VISIBLE);
             holder.leftText.setVisibility(View.GONE);
+            holder.chatImage.setVisibility(View.GONE);
         }
         else
         {
+            holder.chatImage.setVisibility(View.VISIBLE);
             holder.leftText.setText(cmo1.getMessageFriend());
             holder.name.setVisibility(View.VISIBLE);
             holder.name.setText(cmo1.getMessageUser());
             holder.rightText.setVisibility(View.GONE);
             holder.leftText.setVisibility(View.VISIBLE);
+            try {
+                Picasso.get().load(cmo1.getFriendImageUri()).into(holder.chatImage);
+            }catch (Exception e){}
         }
     }
 

@@ -63,7 +63,9 @@ public class id_previewAdapter extends RecyclerView.Adapter<id_previewAdapter.My
 
         user_name.setText(obj.get(position).getName());
         location.setText(obj.get(position).getLocation());
-        Picasso.get().load(obj.get(position).getGlobal_imageUri()).fit().centerCrop().into(userImage);
+        try {
+            Picasso.get().load(obj.get(position).getGlobal_imageUri()).fit().centerCrop().into(userImage);
+        }catch (Exception e){}
 
     }
 

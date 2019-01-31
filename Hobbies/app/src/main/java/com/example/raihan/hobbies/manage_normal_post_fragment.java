@@ -1,5 +1,6 @@
 package com.example.raihan.hobbies;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 
 import static com.example.raihan.hobbies.MainActivity.node;
 
-public class manage_normal_post_fragment extends Fragment {
+public class manage_normal_post_fragment extends Fragment implements ItemClickListener {
 
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
@@ -73,5 +75,15 @@ public class manage_normal_post_fragment extends Fragment {
              }
          });
          recyclerView.setAdapter(npva);
+         npva.setClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view, int position) {
+        final normal_post_object npo = arrayList.get(position);
+
+        Intent i = new Intent(getActivity(),edit_normal_post.class);
+        i.putExtra("object",npo);
+        startActivity(i);
     }
 }

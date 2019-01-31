@@ -54,12 +54,12 @@
                         android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:id="@+id/show_detaols_post_image"
+                        android:id="@+id/show_details_post_image"
                         />
 
                     <TextView
                         android:padding="10dp"
-                        android:layout_below="@+id/show_detaols_post_image"
+                        android:layout_below="@+id/show_details_post_image"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hello"
@@ -71,9 +71,9 @@
                     <TextView
                         android:id="@+id/show_details_comment_title"
                         android:layout_marginTop="20dp"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="#5d0303"
                         android:text="Comments: "
-                        android:textSize="30dp"
+                        android:textSize="25dp"
                         android:layout_below="@id/show_details_post_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -83,11 +83,15 @@
 
             </android.support.v7.widget.CardView>
 
+
+
             <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="10dp"
                 android:id="@+id/comment_recycler"
                 android:layout_below="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
 
         </RelativeLayout>
     </ScrollView>
@@ -134,7 +138,7 @@
             android:layout_centerInParent="true"
             >
             <ImageView
-                android:id="@+id/CommentSendButton"
+                android:id="@+id/commentSendButton"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerInParent="true"

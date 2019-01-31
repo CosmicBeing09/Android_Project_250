@@ -21,10 +21,10 @@
 
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Not added" />
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:icon="@drawable/ic_menu_share"-->
+                <!--android:title="Not added" />-->
             <item
                 android:id="@+id/nav_chat"
                 android:icon="@drawable/ic_message_black_24dp"

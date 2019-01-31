@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edit_sell_post">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        >
+
+        <ImageButton
+            android:id="@+id/deleteSellPost"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="150dp"
+            android:src="@drawable/ic_delete_forever_black_24dp"
+            android:background="@color/white"
+            android:layout_marginStart="150dp" />
+
+
+        <ImageView
+            android:id="@+id/edit_sellImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription=""
+            tools:ignore="ContentDescription" />
+
+
+        <EditText
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
+            android:id="@+id/edit_sell_post_text"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Name *"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@android:color/background_dark" />
+
+        <EditText
+            android:drawableLeft="@drawable/username_register"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
+            android:id="@+id/edit_sell_address"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Address (Location) *"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@android:color/background_dark" />
+
+        <EditText
+            android:drawableLeft="@drawable/money"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_text_post"
+            android:id="@+id/edit_sell_price"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="Price"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColor="@android:color/background_dark" />
+
+
+
+        <Button
+            android:id="@+id/edit_sell_submit"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46dp"
+            android:background="@drawable/rounded_button"
+            android:text="Submit"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+
+
+        <!-- Link to Login Screen -->
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -40,7 +40,7 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener,ItemClickListener{
 
     public static String node;
     android.support.v4.app.Fragment fragment1 = null;
@@ -58,10 +58,11 @@ public class MainActivity extends AppCompatActivity
     TabLayout tabLayout;
     public static String user_location;
     public static profile_info pi;
+    public ArrayList<normal_post_object> arrayList = new ArrayList<>();
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         content_main = (RelativeLayout) findViewById(R.id.content_main);
 
 
-        final ArrayList<normal_post_object> arrayList = new ArrayList<>();
+
 
 
 
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         recyclerView.setAdapter(adapter);
+        adapter.setClickListener(this);
 
 
 
@@ -174,7 +176,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 pi = dataSnapshot.getValue(profile_info.class);
-                Picasso.get().load(pi.getRegister_ImageUri()).fit().into(imageView);
+                try {
+
+                    Picasso.get().load(pi.getRegister_ImageUri()).fit().into(imageView);
+                }catch (Exception e){}
                 name.setText(pi.getRegister_name());
                 location.setText(pi.getAddress());
             }
@@ -211,22 +216,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-//        profile_layout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this,user_profile.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
-
-
-
-
     }
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -253,7 +245,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(MainActivity.this,login.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -276,22 +269,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_managePost) {
 
-//           android.support.v4.app.Fragment fg = new manage_sell_post_fragment();
-//
-//           if(fg!=null)
-//           {
-//               android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//               android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-//               ft.replace(R.id.screenArea,fg).addToBackStack("Tag");
-//               ft.commit();
-//               DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//               drawer.closeDrawer(GravityCompat.START);
-//           }
-
-
            Intent intent = new Intent(MainActivity.this,manage_post_master.class);
            startActivity(intent);
-
 
        }
 
@@ -346,4 +325,12 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onClick(View view, int position) {
+        final normal_post_object npo = arrayList.get(position);
+        Toast.makeText(this,"Clicked",Toast.LENGTH_LONG).show();
+        Intent i = new Intent(MainActivity.this,normal_post_details.class);
+        i.putExtra("object",npo);
+        startActivity(i);
+    }
 }
