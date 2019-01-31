@@ -37,7 +37,7 @@ public class manage_normal_post_fragment extends Fragment implements ItemClickLi
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) throws NullPointerException {
         super.onViewCreated(view, savedInstanceState);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("post").child(node);
@@ -81,7 +81,6 @@ public class manage_normal_post_fragment extends Fragment implements ItemClickLi
     @Override
     public void onClick(View view, int position) {
         final normal_post_object npo = arrayList.get(position);
-
         Intent i = new Intent(getActivity(),edit_normal_post.class);
         i.putExtra("object",npo);
         startActivity(i);

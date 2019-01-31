@@ -32,7 +32,7 @@
                         android:layout_height="wrap_content"
                         android:text="XXXXXXX"
                         android:textSize="27dp"
-                        android:textColor="@android:color/holo_green_dark"
+                        android:textColor="#8318ba"
                         android:textStyle="italic"
                         />
 
@@ -66,12 +66,13 @@
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:id="@+id/show_details_post_text"
+                        android:textColor="#006772"
                         />
 
                     <TextView
                         android:id="@+id/show_details_comment_title"
                         android:layout_marginTop="20dp"
-                        android:textColor="#5d0303"
+                        android:textColor="#1589b3"
                         android:text="Comments: "
                         android:textSize="25dp"
                         android:layout_below="@id/show_details_post_text"
@@ -122,7 +123,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="#fff"
-                android:hint="Type a Message"
+                android:hint="Type a Comment"
                 android:textSize="18sp"/>
         </RelativeLayout>
 
@@ -131,7 +132,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:background="@color/colorAccent"
+            android:background="#5824c2"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="5dp"
             android:elevation="4dp"

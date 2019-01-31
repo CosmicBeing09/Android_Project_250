@@ -1,5 +1,5 @@
 package com.example.raihan.hobbies;
-
+import android.widget.Switch;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -72,6 +72,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
     private ImageButton imageButton;
     private EditText search;
     private ToggleButton toggleButton;
+    private Switch aSwitchButton;
     private LocationManager locationManager;
     private LocationListener locationListener;
     private ArrayList<sell_post_object> arrayList = new ArrayList<>();
@@ -84,14 +85,10 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
         final Integer a= 20;
 
-
-
-
-//        Intent intent = getIntent();
-//        user_location = intent.getStringExtra("location");
         Toast.makeText(locate_user.this,user_location,Toast.LENGTH_LONG).show();
 
-        toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
+        //toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
+        aSwitchButton =(Switch)findViewById(R.id.preview_switch);
         search = (EditText) findViewById(R.id.search_pet);
         imageButton = (ImageButton) findViewById(R.id.search_imageButton);
         searchRadius = (EditText)findViewById(R.id.search_radius);
@@ -178,7 +175,9 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                                     if (results[0] / 1000 <= Float.valueOf(radius) && cpo.getUser().trim()!= pi.getUser_name().trim()) {
 
                                         mapInfo map_info = new mapInfo(locate_user.this);
+
                                         mMap.setInfoWindowAdapter(map_info);
+
 
                                         markerOptions.position(latLng);
                                         markerOptions.title(search_location);
@@ -190,6 +189,18 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
 
                                         mMap.addMarker(markerOptions);
+
+                                        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                            @Override
+                                            public void onInfoWindowClick(Marker marker) {
+                                                sell_post_object spo = (sell_post_object) marker.getTag();
+                                               // Toast.makeText(locate_user.this,spo.getUser().trim(),Toast.LENGTH_LONG).show();
+                                                Intent i = new Intent(locate_user.this,show_details_sale_post.class);
+                                                i.putExtra("object",spo);
+                                                startActivity(i);
+                                            }
+                                        });
+
                                         arrayList.add(cpo);
                                     }
 
@@ -233,6 +244,42 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
             }
         });
 
+        aSwitchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(aSwitchButton.isChecked())
+                {
+                    postPreviewFragment = new sale_post_preview_fragment();
+                    if(postPreviewFragment!=null)
+                    {
+                        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                        android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.map,postPreviewFragment).addToBackStack("Tag");
+
+                        Bundle bundle = new Bundle();
+                        aSwitchButton.setText("Post");
+                        bundle.putParcelableArrayList("arrayList",arrayList);
+                        postPreviewFragment.setArguments(bundle);
+                        ft.commit();
+                    }
+
+                }
+                else {
+                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
+                    aSwitchButton.setText("Map");
+                    ft.remove(postPreviewFragment).commit();
+
+
+
+
+                }
+            }
+
+        });
+
+ /*
+
 toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -265,7 +312,7 @@ toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
        }
     }
 });
-
+*/
 
     }
     /**

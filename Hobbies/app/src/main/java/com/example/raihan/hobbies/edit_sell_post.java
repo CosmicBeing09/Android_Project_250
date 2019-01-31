@@ -43,7 +43,7 @@ public class edit_sell_post extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws NullPointerException{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_sell_post);
 
@@ -56,6 +56,8 @@ public class edit_sell_post extends AppCompatActivity {
         postImage = findViewById(R.id.edit_sellImage);
         deleteButton = findViewById(R.id.deleteSellPost);
         submit = findViewById(R.id.edit_sell_submit);
+
+
 
         Picasso.get().load(spo.getImgaeUrl()).fit().centerCrop().into(postImage);
         location.setText(spo.getLocation());
@@ -129,7 +131,7 @@ public class edit_sell_post extends AppCompatActivity {
         });
 
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View view) {
 
@@ -137,6 +139,7 @@ public class edit_sell_post extends AppCompatActivity {
                 Dialog.setMessage("Updating...");
                 Dialog.show();
 
+                if(SelectImgaeUri!=null){
                 StorageReference filePath = imageStore.child(SelectImgaeUri.getLastPathSegment());
                 filePath.putFile(SelectImgaeUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -178,7 +181,6 @@ public class edit_sell_post extends AppCompatActivity {
                         );
 
 
-
                         final DatabaseReference bc = FirebaseDatabase.getInstance().getReference("global_sale_post").child(spo.getPet_type().trim());
                         bc.orderByChild("post_text").equalTo(spo.getPost_text()).addChildEventListener(new ChildEventListener() {
                             @Override
@@ -212,6 +214,10 @@ public class edit_sell_post extends AppCompatActivity {
                     }
                 });
 
+            }
+            else
+                update();
+
                 Dialog.dismiss();
                 Toast.makeText(edit_sell_post.this,"Updated",Toast.LENGTH_LONG).show();
             }
@@ -233,8 +239,76 @@ public class edit_sell_post extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Gallery_Reques && resultCode == RESULT_OK)
         {
+            assert data != null;
             SelectImgaeUri = data.getData();
             postImage.setImageURI(SelectImgaeUri);
         }
+    }
+    void update()
+    {
+        final DatabaseReference ab = FirebaseDatabase.getInstance().getReference("Sale_post").child(node);
+        ab.orderByChild("post_text").equalTo(spo.getPost_text()).addChildEventListener(
+                new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        ab.child(dataSnapshot.getKey()).child("price").setValue(price.getText().toString().trim());
+                        ab.child(dataSnapshot.getKey()).child("location").setValue(location.getText().toString().trim());
+                        ab.child(dataSnapshot.getKey()).child("post_text").setValue(postText.getText().toString().trim());
+
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                        ab.child(dataSnapshot.getKey()).setValue(spo);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                }
+        );
+
+
+        final DatabaseReference bc = FirebaseDatabase.getInstance().getReference("global_sale_post").child(spo.getPet_type().trim());
+        bc.orderByChild("post_text").equalTo(spo.getPost_text()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                bc.child(dataSnapshot.getKey()).child("price").setValue(price.getText().toString().trim());
+                bc.child(dataSnapshot.getKey()).child("location").setValue(location.getText().toString().trim());
+                bc.child(dataSnapshot.getKey()).child("post_text").setValue(postText.getText().toString().trim());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

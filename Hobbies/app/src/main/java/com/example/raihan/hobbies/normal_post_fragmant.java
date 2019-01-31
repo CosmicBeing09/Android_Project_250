@@ -56,7 +56,7 @@ public class normal_post_fragmant extends android.support.v4.app.Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) throws NullPointerException {
         super.onViewCreated(view, savedInstanceState);
 
 

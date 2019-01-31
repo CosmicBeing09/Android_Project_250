@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/profile_fragmant_layout"
+
     >
 
     <FrameLayout
         android:id="@+id/profile_fragmant"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="#e1ebf2"
         >
 
         <ScrollView
@@ -40,7 +41,7 @@
                     android:id="@+id/card_view"
                     >
                     <RelativeLayout
-                        android:background="@color/btn_login_bg"
+                        android:background="#95abb6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView

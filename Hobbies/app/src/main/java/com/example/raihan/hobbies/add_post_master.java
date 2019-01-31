@@ -17,7 +17,7 @@ public class add_post_master extends AppCompatActivity {
     private String[] pageTitle = {"Add Post", "Add Sell Post"};
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post_master);
 

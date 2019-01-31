@@ -31,10 +31,10 @@
                 android:layout_height="wrap_content"
                 android:text="Dog"
                 android:textSize="20dp"
-                android:textStyle="italic"
+                android:textStyle="bold"
                 android:layout_marginLeft="120dp"
                 android:id="@+id/post_preview_petType"
-                android:textColor="@color/colorPrimary"
+                android:textColor="#021821"
                 />
             <TextView
 
@@ -47,20 +47,19 @@
                 android:textSize="20dp"
                 android:text="Type: "
                 android:textStyle="italic"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#132b36"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/post_preview_postType"
                 android:layout_below="@+id/post_preview_petType"
-
                 android:layout_marginLeft="180dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="7dp"
                 android:text="Adoptation"
                 android:textSize="20dp"
                 android:textStyle="italic"
-                android:textColor="@color/colorAccent"
+                android:textColor="#365c6d"
                 />
 
         </RelativeLayout>
