@@ -53,7 +53,7 @@ public class comment_adapter extends RecyclerView.Adapter<comment_adapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) throws NullPointerException{
 
         TextView name = holder.name;
         TextView text = holder.text;

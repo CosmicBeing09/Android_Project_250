@@ -36,7 +36,7 @@ public class manage_sell_post_fragment extends Fragment implements ItemClickList
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) throws NullPointerException {
         super.onViewCreated(view, savedInstanceState);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Sale_post").child(node);

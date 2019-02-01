@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -246,6 +247,13 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(MainActivity.this,login.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            SharedPreferences sp = getSharedPreferences("login",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.remove("user_name");
+            editor.remove("password");
+            editor.putBoolean("status",false);
+            editor.commit();
             startActivity(intent);
         }
 
@@ -328,7 +336,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View view, int position) {
         final normal_post_object npo = arrayList.get(position);
-        Toast.makeText(this,"Clicked",Toast.LENGTH_LONG).show();
+//        Toast.makeText(this,"Clicked",Toast.LENGTH_LONG).show();
         Intent i = new Intent(MainActivity.this,normal_post_details.class);
         i.putExtra("object",npo);
         startActivity(i);

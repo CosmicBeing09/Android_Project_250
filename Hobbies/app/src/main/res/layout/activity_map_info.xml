@@ -5,18 +5,21 @@
     android:layout_width="200dp"
     android:layout_height="180dp"
     tools:context=".mapInfo"
-    android:background="#fff">
+    >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/mapInfoImage"
         android:layout_width="110dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="110dp"
         />
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
+        android:paddingLeft="10dp"
         android:layout_marginLeft="5dp"
         android:backgroundTint="#b9b0b0"
         android:layout_marginRight="5dp"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mapInfoImage"
         >
@@ -38,14 +41,24 @@
             android:text="Location"
             android:textColor="#fff"
             android:layout_marginLeft="60dp"
+            android:layout_marginRight="10dp"
             android:textStyle="bold"
             android:textSize="15dp"
             />
         <TextView
+
             android:layout_marginTop="29dp"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#fff"/>
+        <TextView
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pet : "
+            android:layout_below="@+id/mapInfoText1"
+            android:textColor="#fff"/>
         <TextView
             android:textColor="#fff"
             android:id="@+id/mapInfoText2"
@@ -53,9 +66,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/mapInfoText1"
             android:layout_marginLeft="10dp"
+            android:textAllCaps="true"
             android:text="Pet"
             android:textSize="15dp"
             android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
 
             />
     </android.support.v7.widget.CardView>

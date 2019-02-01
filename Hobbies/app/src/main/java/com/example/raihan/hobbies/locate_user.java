@@ -85,11 +85,6 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
         final Integer a= 20;
 
-
-
-
-//        Intent intent = getIntent();
-//        user_location = intent.getStringExtra("location");
         Toast.makeText(locate_user.this,user_location,Toast.LENGTH_LONG).show();
 
         //toggleButton = (ToggleButton) findViewById(R.id.preview_toggle);
@@ -180,7 +175,9 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                                     if (results[0] / 1000 <= Float.valueOf(radius) && cpo.getUser().trim()!= pi.getUser_name().trim()) {
 
                                         mapInfo map_info = new mapInfo(locate_user.this);
+
                                         mMap.setInfoWindowAdapter(map_info);
+
 
                                         markerOptions.position(latLng);
                                         markerOptions.title(search_location);
@@ -192,6 +189,18 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
 
                                         mMap.addMarker(markerOptions);
+
+                                        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                                            @Override
+                                            public void onInfoWindowClick(Marker marker) {
+                                                sell_post_object spo = (sell_post_object) marker.getTag();
+                                               // Toast.makeText(locate_user.this,spo.getUser().trim(),Toast.LENGTH_LONG).show();
+                                                Intent i = new Intent(locate_user.this,show_details_sale_post.class);
+                                                i.putExtra("object",spo);
+                                                startActivity(i);
+                                            }
+                                        });
+
                                         arrayList.add(cpo);
                                     }
 
@@ -245,8 +254,10 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                     {
                         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
                         android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.map,postPreviewFragment).addToBackStack("tag");
+                        ft.replace(R.id.map,postPreviewFragment).addToBackStack("Tag");
+
                         Bundle bundle = new Bundle();
+                        aSwitchButton.setText("Post");
                         bundle.putParcelableArrayList("arrayList",arrayList);
                         postPreviewFragment.setArguments(bundle);
                         ft.commit();
@@ -256,7 +267,8 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
                 else {
                     android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction ft = fragmentManager.beginTransaction();
-                    ft.remove(postPreviewFragment).addToBackStack("tag").commit();
+                    aSwitchButton.setText("Map");
+                    ft.remove(postPreviewFragment).commit();
 
 
 
@@ -300,8 +312,8 @@ toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListen
        }
     }
 });
-
 */
+
     }
     /**
      * Manipulates the map once available.

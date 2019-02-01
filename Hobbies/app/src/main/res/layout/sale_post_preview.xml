@@ -34,7 +34,7 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="120dp"
                 android:id="@+id/post_preview_petType"
-                android:textColor="#000"
+                android:textColor="#021821"
                 />
             <TextView
 
@@ -47,7 +47,7 @@
                 android:textSize="20dp"
                 android:text="Type: "
                 android:textStyle="italic"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="#132b36"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:text="Adoptation"
                 android:textSize="20dp"
                 android:textStyle="italic"
-                android:textColor="@color/colorAccent"
+                android:textColor="#365c6d"
                 />
 
         </RelativeLayout>

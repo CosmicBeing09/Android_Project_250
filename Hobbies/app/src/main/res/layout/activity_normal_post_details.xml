@@ -12,83 +12,95 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#e1ebf2"
+            android:elevation="2dp"
+            >
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:padding="5dp"
                 android:id="@+id/card"
+
                 >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/show_details_userImage"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
                         android:id="@+id/show_details_userName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XXXXXXX"
-                        android:textSize="27dp"
-                        android:textColor="@android:color/holo_green_dark"
-                        android:textStyle="italic"
+                        android:textSize="20dp"
+                        android:textColor="#111112"
+                        android:textStyle="bold"
                         />
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/show_details_userName"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginLeft="6dp"
+                        android:text="updated his snap"/>
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/show_details_userImage"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentEnd="true"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_margin="5dp"
+                        android:layout_alignParentEnd="false"
                         android:layout_alignParentTop="true"
-
-                        android:layout_marginEnd="12dp"
+                        android:layout_marginEnd="2dp"
                         android:scaleType="centerCrop"
+                        app:civ_border_width="1dp"
+                        app:civ_border_color="#afe1dddd"
                         android:src="@drawable/ic_launcher_background" />
 
 
                     <ImageView
-                        android:layout_below="@+id/show_details_userImage"
-                        android:layout_marginTop="5dp"
-                        android:padding="10dp"
+                        android:layout_below="@+id/show_details_post_text"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="230dp"
                         android:id="@+id/show_details_post_image"
                         />
 
                     <TextView
-                        android:padding="10dp"
-                        android:layout_below="@+id/show_details_post_image"
+                        android:padding="5dp"
+                        android:layout_below="@+id/show_details_userImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Hello"
-                        android:textSize="20dp"
-                        android:textStyle="bold"
+                        android:textSize="18dp"
                         android:id="@+id/show_details_post_text"
-                        />
-
-                    <TextView
-                        android:id="@+id/show_details_comment_title"
-                        android:layout_marginTop="20dp"
-                        android:textColor="#5d0303"
-                        android:text="Comments: "
-                        android:textSize="25dp"
-                        android:layout_below="@id/show_details_post_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:textColor="@color/bg_register"
                         />
 
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
 
-
+            <TextView
+                android:layout_below="@+id/card"
+                android:padding="10dp"
+                android:id="@+id/show_details_comment_title"
+                android:layout_marginTop="10dp"
+                android:text="Comments : "
+                android:fontFamily="@font/font_1"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
 
             <android.support.v7.widget.RecyclerView
-                android:layout_marginTop="10dp"
+                android:layout_margin="15dp"
                 android:id="@+id/comment_recycler"
-                android:layout_below="@+id/card"
+                android:layout_below="@+id/show_details_comment_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -104,7 +116,7 @@
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
@@ -116,13 +128,12 @@
             >
             <EditText
                 android:id="@+id/commentEditText"
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:minHeight="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:background="#fff"
-                android:hint="Type a Message"
+                android:hint="Type a Comment"
                 android:textSize="18sp"/>
         </RelativeLayout>
 
@@ -131,10 +142,10 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:background="@color/colorAccent"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="5dp"
             android:elevation="4dp"
+            android:background="@color/colorPrimary"
             android:layout_centerInParent="true"
             >
             <ImageView
@@ -143,7 +154,8 @@
                 android:layout_height="25dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_menu_send"
-                android:tint="#fff"/>
+                android:tint="#fff"
+               />
         </RelativeLayout>
 
     </RelativeLayout>

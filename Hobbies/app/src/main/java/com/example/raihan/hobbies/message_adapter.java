@@ -26,7 +26,7 @@ class msg_adapter extends RecyclerView.Adapter<msg_adapter.MyViewHolder> {
         private TextView leftText,rightText,name;
         private CircleImageView chatImage;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(View itemView) throws NullPointerException {
             super(itemView);
             name = (TextView)itemView.findViewById(R.id.chatName);
             rightText = (TextView) itemView.findViewById(R.id.rightText);
@@ -44,13 +44,13 @@ class msg_adapter extends RecyclerView.Adapter<msg_adapter.MyViewHolder> {
 
     @NonNull
     @Override
-    public msg_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public msg_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) throws NullPointerException{
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_list,parent,false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull msg_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull msg_adapter.MyViewHolder holder, int position) throws NullPointerException {
 
         chat_message_object cmo1 = cmo.get(position);
         if(cmo1.getMessageUser().equals(node))

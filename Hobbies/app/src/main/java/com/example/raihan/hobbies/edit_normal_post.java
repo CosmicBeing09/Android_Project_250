@@ -42,11 +42,11 @@ public class edit_normal_post extends AppCompatActivity {
     StorageReference imageStore = FirebaseStorage.getInstance().getReference("Post Image");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)throws NullPointerException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_normal_post);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         npo = intent.getParcelableExtra("object");
 
         post = FirebaseDatabase.getInstance().getReference("post").child(node);
@@ -67,6 +67,7 @@ public class edit_normal_post extends AppCompatActivity {
             public void onClick(View view) {
                 delete_post();
                 Toast.makeText(edit_normal_post.this,"Post Deleted",Toast.LENGTH_LONG).show();
+
             }
 
         });
@@ -153,6 +154,11 @@ public class edit_normal_post extends AppCompatActivity {
 
                 }
 
+                else
+                {
+                    update();
+                }
+
                 Dialog.dismiss();
                 Toast.makeText(edit_normal_post.this,"Post Updated",Toast.LENGTH_LONG).show();
             }
@@ -170,72 +176,6 @@ public class edit_normal_post extends AppCompatActivity {
 
     }
 
-//    void update()
-//    {
-//        final DatabaseReference ab = FirebaseDatabase.getInstance().getReference("post").child(node);
-//        ab.orderByChild("hint").equalTo(npo.getHint()).addChildEventListener(
-//                new ChildEventListener() {
-//                    @Override
-//                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                        ab.child(dataSnapshot.getKey()).child("post_text").setValue(postEditText.getText().toString().trim());
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//
-//                    }
-//                }
-//        );
-//
-//
-//        final DatabaseReference bc = FirebaseDatabase.getInstance().getReference("global_post");
-//        bc.orderByChild("hint").equalTo(npo.getHint()).addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                bc.child(dataSnapshot.getKey()).child("post_text").setValue(postEditText.getText().toString().trim());
-//
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//
-//
-//
-//    }
 
     void delete_post()
     {
@@ -300,13 +240,77 @@ public class edit_normal_post extends AppCompatActivity {
 
     }
 
+    void update()
+    {
+        final DatabaseReference ab = FirebaseDatabase.getInstance().getReference("post").child(node);
+        ab.orderByChild("hint").equalTo(npo.getHint()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                ab.child(dataSnapshot.getKey()).child("post_text").setValue(postEditText.getText().toString().trim());
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        final DatabaseReference bc = FirebaseDatabase.getInstance().getReference("global_post");
+        bc.orderByChild("hint").equalTo(npo.getHint()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                bc.child(dataSnapshot.getKey()).child("post_text").setValue(postEditText.getText().toString().trim());
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Gallery_Reques && resultCode == RESULT_OK)
         {
+            assert data != null;
             SelectImgaeUri = data.getData();
             postImage.setImageURI(SelectImgaeUri);
         }
+
     }
 }

@@ -29,7 +29,7 @@ public class mapInfo implements GoogleMap.InfoWindowAdapter{
     }
 
     @Override
-    public View getInfoContents(Marker marker) {
+    public View getInfoContents(Marker marker) throws NullPointerException {
 
         try {
             View view = ((Activity) context).getLayoutInflater()
@@ -50,6 +50,7 @@ public class mapInfo implements GoogleMap.InfoWindowAdapter{
 
             return view;
         }catch (Exception e){}
+
         return null;
     }
 }

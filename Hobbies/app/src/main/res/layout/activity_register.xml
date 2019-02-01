@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
@@ -34,7 +34,7 @@
             android:textSize="20dp"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/name_register"
             android:padding="5dp"
             android:drawablePadding="15dp"
@@ -50,7 +50,7 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:textSize="20dp"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/address_register"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
@@ -64,7 +64,7 @@
             android:hint="Phone No"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/phone_register"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
@@ -78,7 +78,7 @@
             android:hint="User name e.g. Himu123"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/username_register"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
@@ -92,7 +92,7 @@
             android:hint="Hobby"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/hobby"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
@@ -107,7 +107,7 @@
             android:hint="Occupation"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/occupation"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
@@ -124,7 +124,7 @@
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:background="@drawable/edit_round_button"
+            android:background="@drawable/edit_text_design1"
             android:drawableLeft="@drawable/key"
             android:padding="5dp"
             android:drawablePadding="15dp"/>
@@ -139,7 +139,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button2"
             android:text="@string/action_sign_in_short"
             android:textColor="@android:color/black"
             android:textStyle="bold" />

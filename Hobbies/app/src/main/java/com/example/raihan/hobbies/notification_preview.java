@@ -66,7 +66,7 @@ public class notification_preview extends Fragment {
             }
 
             @Override
-            public void OnDeleteClick(int position) {
+            public void OnDeleteClick(final int position) {
 
                 final DatabaseReference ab = FirebaseDatabase.getInstance().getReference("notification").child(node);
                 ab.orderByChild("key").equalTo(arrayList.get(position).getKey()).addChildEventListener(
@@ -74,6 +74,8 @@ public class notification_preview extends Fragment {
                             @Override
                             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                                 ab.child(dataSnapshot.getKey()).setValue(null);
+                                arrayList.remove(position);
+                                na.notifyDataSetChanged();
                             }
 
                             @Override
