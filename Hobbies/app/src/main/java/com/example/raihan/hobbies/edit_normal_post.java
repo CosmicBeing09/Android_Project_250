@@ -46,7 +46,7 @@ public class edit_normal_post extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_normal_post);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         npo = intent.getParcelableExtra("object");
 
         post = FirebaseDatabase.getInstance().getReference("post").child(node);
@@ -67,6 +67,7 @@ public class edit_normal_post extends AppCompatActivity {
             public void onClick(View view) {
                 delete_post();
                 Toast.makeText(edit_normal_post.this,"Post Deleted",Toast.LENGTH_LONG).show();
+
             }
 
         });

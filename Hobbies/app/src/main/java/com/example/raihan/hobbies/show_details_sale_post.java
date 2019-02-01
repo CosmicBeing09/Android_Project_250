@@ -32,7 +32,7 @@ public class show_details_sale_post extends AppCompatActivity {
     DatabaseReference notification;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_details_sale_post);
 
@@ -40,6 +40,8 @@ public class show_details_sale_post extends AppCompatActivity {
 
         Intent intent = getIntent();
         spo = (sell_post_object) intent.getParcelableExtra("object");
+
+        notification = FirebaseDatabase.getInstance().getReference("notification").child(spo.getUser());
 
 
         userNmae = (TextView) findViewById(R.id.Details_userName);

@@ -46,7 +46,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         btnReset = (Button) findViewById(R.id.btn_reset_password);
         mAuth = FirebaseAuth.getInstance();
 
-        if(sp.getBoolean("status", true))
+        if(sp.getBoolean("status", false))
         {
             mAuth.signInWithEmailAndPassword(sp.getString("user_name","")+"@gmail.com",sp.getString("password",""))
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

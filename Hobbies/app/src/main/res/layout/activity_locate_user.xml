@@ -57,8 +57,9 @@
             android:layout_width="250dp"
             android:layout_height="match_parent"
             android:layout_margin="2dp"
-            android:hint="Search Radius"
+            android:hint="Search Radius in Km"
             android:id="@+id/search_radius"
+            android:inputType="numberDecimal"
             />
         <ImageButton
             android:layout_toRightOf="@id/search_radius"
