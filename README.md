@@ -1,5 +1,5 @@
 An android app for pet lovers usnig firebase as data server.
-##Has features like:
+Has features like:
 > Creating profile
 > Creating post
 > Managing Post
