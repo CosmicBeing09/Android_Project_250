@@ -110,11 +110,6 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
             @Override
             public void onClick(View view) {
 
-//                if(radius.isEmpty())
-//                {
-//                    radius="20";
-//                }
-
                 radius = searchRadius.getText().toString().trim();
                 searchType[0] = search.getText().toString().toLowerCase().trim();
                 if(!radius.isEmpty() && !searchType[0].isEmpty()){
@@ -181,7 +176,7 @@ public class locate_user extends FragmentActivity implements OnMapReadyCallback 
 
                                         markerOptions.position(latLng);
                                         markerOptions.title(search_location);
-                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
 
                                         Marker m = mMap.addMarker(markerOptions);
                                         m.setTag(cpo);

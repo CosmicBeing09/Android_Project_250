@@ -32,11 +32,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="90dp"
+                android:fontFamily="@font/font_2"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="70dp"
                 android:text="raihan123 interested in your post !"
-                android:textStyle="bold"
-                android:textColor="#5208ba"
+                android:textColor="#131215"
                 android:textSize="20dp"
                 />
             <ImageView

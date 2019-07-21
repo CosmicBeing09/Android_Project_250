@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -59,8 +60,9 @@ public class MainActivity extends AppCompatActivity
     TabLayout tabLayout;
     public static String user_location;
     public static profile_info pi;
+    String token_id;
     public ArrayList<normal_post_object> arrayList = new ArrayList<>();
-
+    DatabaseReference def;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) throws NullPointerException {
@@ -71,6 +73,9 @@ public class MainActivity extends AppCompatActivity
 
         Intent i = getIntent();
         node = i.getStringExtra("user").trim();
+
+        token_id = FirebaseInstanceId.getInstance().getToken();
+        def = FirebaseDatabase.getInstance().getReference();
 
 
 

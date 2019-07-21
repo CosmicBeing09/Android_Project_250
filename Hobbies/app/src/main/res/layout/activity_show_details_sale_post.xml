@@ -118,7 +118,7 @@
                 android:id="@+id/card_view2"
                 android:layout_below="@+id/Details_petType">
                 <TextView
-                    android:textColor="#006772"
+                    android:textColor="@color/colorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
@@ -140,12 +140,12 @@
                 android:layout_marginRight="40dp"
                 android:textStyle="bold"
                 android:textSize="20dp"
-                android:textColor="#391bc3"
+                android:textColor="@color/colorPrimary"
                 />
 
             <TextView
                 android:layout_marginTop="20dp"
-                android:background="@drawable/rounded_button"
+                android:background="@drawable/rounded_button2"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/card_view2"
