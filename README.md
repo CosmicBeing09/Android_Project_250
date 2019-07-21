@@ -1,10 +1,10 @@
 An android app for pet lovers usnig firebase as data server.
 Has features like:
-> Creating profile
-> Creating post
-> Managing Post
-> Creating sell / adpotation post
-> Managing sell / adoptation post
-> Chatting with friend
-> Search specific pet to adopt
-> Visualize geographically for donors and many more
+> 1. Creating profile
+> 2. Creating post
+> 3. Managing Post
+> 4. Creating sell / adpotation post
+> 5. Managing sell / adoptation post
+> 6. Chatting with friend
+> 7. Search specific pet to adopt
+> 8. Visualize geographically for donors and many more
